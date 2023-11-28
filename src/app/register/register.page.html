@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="onSubmit()" #registroForm="ngForm">
+    <ion-item>
+      <ion-label position="floating">Nombre de usuario:</ion-label>
+      <ion-input type="text" name="username" required [(ngModel)]="usuario.username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo electrónico:</ion-label>
+      <ion-input type="email" name="email" required [(ngModel)]="usuario.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña:</ion-label>
+      <ion-input type="password" name="password" required [(ngModel)]="usuario.password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirmación de contraseña:</ion-label>
+      <ion-input type="password" name="confirmPassword" required [(ngModel)]="usuario.confirmPassword"></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Nombre:</ion-label>
+          <ion-input type="text" name="nombre" required [(ngModel)]="usuario.nombre"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Apellidos:</ion-label>
+          <ion-input type="text" name="apellidos" required [(ngModel)]="usuario.apellidos"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <ion-label position="floating">Fecha de nacimiento:</ion-label>
+      <ion-input type="date" name="fechaNacimiento" [(ngModel)]="usuario.fecha_nacimiento"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Género:</ion-label>
+      <ion-select name="genero" placeholder="Seleccione" [(ngModel)]="usuario.genero">
+        <ion-select-option value=""></ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Número de teléfono:</ion-label>
+      <ion-input type="tel" name="numeroTelefono" [(ngModel)]="usuario.numero_telefono"></ion-input>
+    </ion-item>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <ion-button expand="full" type="submit" [disabled]="!registroForm.valid">Registrarse</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  <ion-row class="ion-align-items-center mt-3">
+    <ion-col>
+      <!-- Botón de redirección al inicio de sesión -->
+      <ion-button expand="full" color="secondary" (click)="redirectToLogin()">Ya tengo una cuenta</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
