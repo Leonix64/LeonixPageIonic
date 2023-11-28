@@ -16,7 +16,7 @@ Asegúrate de tener instaladas las siguientes herramientas antes de continuar:
 1. Clona este repositorio:
 
    ```bash
-   git clone https://github.com/tuusuario/turepositorio.git
+   https://github.com/AngelGonzalez64/LeonixPageIonic.git
    
 2. Ingresa al directorio del proyecto:
    ```bash
