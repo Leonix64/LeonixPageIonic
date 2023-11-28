@@ -1,7 +1,5 @@
 # LeonixPageIonic
 
-## Inicio Rápido
-
 Sigue estos pasos para empezar a trabajar con el proyecto localmente.
 
 ### Prerrequisitos
