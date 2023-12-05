@@ -21,6 +21,7 @@ export class HomePage {
     this.router.navigate(['/login']);
 
     this.showSnackBar('Sesion cerrada correctamente', 'success');
+    console.log('Sesion cerrada :D');
   }
 
   private showSnackBar(message: string, type: 'success' | 'error') {
