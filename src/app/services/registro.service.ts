@@ -16,6 +16,13 @@ export class RegistroService {
 
     return this.httpClient.post(signupUrl, usuario, { headers });
   }
+  
+  getGeneroByToken(): Observable<any> {
+    const getGeneroUrl = `${this.apiUrl}/get-generos`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.httpClient.get(getGeneroUrl, { headers });
+  }
 }
 
 export interface Usuario {
@@ -26,6 +33,6 @@ export interface Usuario {
   nombre: string;
   apellidos: string;
   fecha_nacimiento: string;
-  genero: string;
+  genero_id: number;
   numero_telefono: string;
 }

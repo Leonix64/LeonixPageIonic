@@ -1,0 +1,17 @@
+.header-content {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+
+    .avatar {
+      width: 100px; // Ajusta el tamaño de la imagen de avatar
+      height: 100px;
+      border-radius: 10%; // Hace que la imagen sea redonda
+      margin-right: 15px;
+    }
+
+    .name {
+      font-size: 18px; // Ajusta el tamaño del nombre
+      font-weight: bold;
+    }
+  }

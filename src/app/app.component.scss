@@ -1,0 +1,38 @@
+.menu-content {
+    .menu-header {
+      background-color: #333; // Puedes ajustar el color de fondo según tus preferencias
+      color: #fff; // Puedes ajustar el color del texto según tus preferencias
+  
+      .menu-header-bg {
+        height: 100px; // Ajusta la altura de la imagen de fondo
+        background-size: cover;
+        background-position: center;
+        // Agrega tu imagen de fondo aquí
+      }
+  
+      .header-content {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+  
+        .avatar {
+          width: 100px; // Ajusta el tamaño de la imagen de avatar
+          height: 100px;
+          border-radius: 10%; // Hace que la imagen sea redonda
+          margin-right: 15px;
+        }
+  
+        .name {
+          font-size: 18px; // Ajusta el tamaño del nombre
+          font-weight: bold;
+        }
+      }
+    }
+  
+    .menu-item {
+      ion-item {
+        color: #a4a4a4; // Ajusta el color del texto del ítem según tus preferencias
+      }
+    }
+  }
+  

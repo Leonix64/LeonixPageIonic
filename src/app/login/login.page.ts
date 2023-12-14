@@ -16,9 +16,9 @@ export class LoginPage implements OnInit {
   };
 
   // Variables para almacenar 
-  token: string = '';
-  rol: string = '';
-  generos: [] = [];
+  token = '';
+  rol = '';
+  generos: any[] = [];
 
   constructor(
     private loginService: LoginService,
@@ -26,8 +26,7 @@ export class LoginPage implements OnInit {
     private snackBar: MatSnackBar
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   IniciarSesion() {
     this.loginService.login(this.usuario).subscribe(
@@ -35,72 +34,27 @@ export class LoginPage implements OnInit {
         this.token = response.token;
         this.loginService.setToken(this.token);
         console.log('Token de Usuario:', this.token);
-
-        this.GetUserData();
-        this.GetRolData();
-        this.GetGeneroData();
+        
         this.router.navigate(['/home']);
-        this.showSnackBar('Inicio de sesion exitoso', 'success');
+        this.showSnackBar('Inicio de sesión exitoso', 'success');
       },
       (error) => {
-        this.showSnackBar('Error de inicio de sesion', 'error');
-        console.log('Error de inicio de sesion', error);
+        this.showSnackBar('Error de inicio de sesión', 'error');
+        console.log('Error de inicio de sesión', error);
       }
     );
   }
-
-  private GetUserData() {
-    this.loginService.getUserByToken().subscribe(
-      (userData) => {
-        console.log('Datos de usuario:', userData);
-      },
-      (error) => {
-        console.error('Error al obtener datos del usuario:', error);
-      }
-    );
-  }
-
-  private GetRolData() {
-    this.loginService.getRolByToken().subscribe(
-      (rolData) => {
-        if (rolData && rolData.rol) {
-          this.rol = rolData.rol;
-          console.log('Rol de usuario:', this.rol);
-        } else {
-          console.log('Respuesta del server son info del rol');
-        }
-      },
-      (error) => {
-        console.log('Error al obtener el rol del usuario', error);
-      }
-    );
-  }
-
-  private GetGeneroData() {
-    this.loginService.getGeneroByToken().subscribe(
-      (generoData) => {
-        if (generoData && generoData.length > 0) {
-          this.generos = generoData; // Cambiado a 'generos' en lugar de 'genero'
-          console.log('Datos de géneros:', this.generos);
-        } else {
-          console.log('Respuesta del servidor sin información de géneros');
-        }
-      },
-      (error) => {
-        console.log('Error al obtener datos de géneros', error);
-      }
-    );
-  }
-  
 
   redirectToRegister() {
     this.router.navigate(['/register']);
   }
 
   private showSnackBar(message: string, type: 'success' | 'error') {
+    const panelClass = type === 'success' ? ['success-snackbar'] : ['error-snackbar'];
+
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,
-      panelClass: 'success' ? ['success-snackbar'] : ['error-snackbar'],
+      panelClass: panelClass,
     });
   }
 }

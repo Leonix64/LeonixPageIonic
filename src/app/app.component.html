@@ -1,3 +1,31 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="menu-content" menuId="menu-content" side="start" *ngIf="ocultar()">
+    <ion-content scrollY="false" class="menu-content">
+      <div class="menu-header">
+        <div class="menu-header-bg"></div>
+        <div class="header-content">
+          <img src="https://w.wallhaven.cc/full/kx/wallhaven-kxwwo7.jpg" alt="Avatar" class="avatar">
+          <ion-label>
+            <h2 class="name">¡Bienvenido!</h2>
+          </ion-label>
+        </div>
+      </div>
+
+      <ion-list class="menu-item">
+        <ion-menu-toggle>
+
+          <ion-item routerLink="user-profile">
+            <ion-icon name="person-outline" slot="start"></ion-icon> Datos de Usuario
+          </ion-item>
+
+          <ion-item routerLink="home">
+            <ion-icon name="home" slot="start"></ion-icon> Home
+          </ion-item>
+
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="menu-content"></ion-router-outlet>
 </ion-app>

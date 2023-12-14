@@ -1,21 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <form (ngSubmit)="IniciarSesion()">
     <ion-item>
-      <ion-label position="floating">Nombre de usuario</ion-label>
-      <ion-input type="text" name="password" required [(ngModel)]="usuario.username"></ion-input>
+      <label position="floating">Nombre de usuario</label>
+      <ion-input type="text" name="username" required [(ngModel)]="usuario.username"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
+      <label position="floating">Contraseña</label>
       <ion-input type="password" name="password" required [(ngModel)]="usuario.password"></ion-input>
     </ion-item>
-    <ion-button expand="full" type="submit">Iniciar Sesion</ion-button>
+
+    <ion-button expand="full" type="submit">Iniciar Sesión</ion-button>
 
     <div>
       <ion-button expand="full" type="button" (click)="redirectToRegister()">No estoy registrado</ion-button>
