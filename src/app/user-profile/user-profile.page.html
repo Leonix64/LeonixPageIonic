@@ -1,67 +1,79 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="volver"></ion-back-button>
+    </ion-buttons>
     <ion-title>Perfil de Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card class="profile-card">
-    <ion-card-header>
-      Información de Usuario
-    </ion-card-header>
+  <ion-row>
+    <!-- Tarjeta de Usuario -->
+    <ion-col size="6">
+      <ion-card class="user-card">
+        <ion-card-content>
+          <div class="imagen" (click)="openProfileImageModal()" (mouseover)="showEditIcon = true" (mouseleave)="showEditIcon = false">
+            <img [src]="getBase64Image(base64Image)" alt="Imagen de perfil actual" class="avatar" />
+            <ion-icon *ngIf="showEditIcon" name="create" class="edit-icon"></ion-icon>
+          </div>
+          <div class="informacion">
+            <span class="username">{{userInfo.username || 'Sin username'}}</span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
 
-
-
-    <ion-card-content>
-
-      <div class="header-content">
-        <img src="https://w.wallhaven.cc/full/kx/wallhaven-kxwwo7.jpg" alt="Avatar" class="avatar">
-      </div>
-
-      <div>
-        <span>{{userInfo.username || 'Sin username'}}</span>
-      </div>
-      
-      <ion-list lines="full">
-
-        <ion-item>
-          <ion-label>
-            <h3> Correo Electronico</h3>
-            <p>{{userInfo.email}}</p>
-          </ion-label>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input [(ngModel)]="userInfo.nombre" disabled></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Apellido</ion-label>
-          <ion-input [(ngModel)]="userInfo.apellidos" disabled></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Fecha de Nacimiento</ion-label>
-          <ion-input [(ngModel)]="userInfo.fecha_nacimiento" disabled></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Género</ion-label>
-          <ion-input [(ngModel)]="userInfo.genero_id" disabled></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Número de Teléfono</ion-label>
-          <ion-input [(ngModel)]="userInfo.numero_telefono" disabled></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Rol</ion-label>
-          <ion-input [(ngModel)]="userInfo.rol_id" disabled></ion-input>
-        </ion-item>
-
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+    <!-- Tarjeta de Información -->
+    <ion-col size="6">
+      <ion-card class="info-card">
+        <ion-card-content>
+          <ion-list lines="full" class="user-details">
+            <ion-item>
+              <ion-label>
+                <h3>Correo Electrónico</h3>
+                <p>{{userInfo.email || 'Sin correo electrónico'}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3>Nombre</h3>
+                <p>{{userInfo.nombre || 'Sin nombre'}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3>Apellido</h3>
+                <p>{{userInfo.apellidos || 'Sin apellido'}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3>Fecha de Nacimiento</h3>
+                <p>{{userInfo.fecha_nacimiento || 'Sin fecha de nacimiento'}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3>Género</h3>
+                <p>{{userInfo.nombre_genero || 'Sin género'}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3>Número de Teléfono</h3>
+                <p>{{userInfo.numero_telefono || 'Sin número de teléfono'}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3>Rol</h3>
+                <p>{{userInfo.nombre_rol || 'Sin rol'}}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

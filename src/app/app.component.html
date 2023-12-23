@@ -1,19 +1,23 @@
 <ion-app>
-  <ion-menu contentId="menu-content" menuId="menu-content" side="start" *ngIf="ocultar()">
+  <ion-menu contentId="menu-content" menuId="menu-content" side="start">
     <ion-content scrollY="false" class="menu-content">
       <div class="menu-header">
         <div class="menu-header-bg"></div>
         <div class="header-content">
-          <img src="https://w.wallhaven.cc/full/kx/wallhaven-kxwwo7.jpg" alt="Avatar" class="avatar">
+          <img [src]="getBase64Image(base64Image)" alt="Avatar" class="avatar">
           <ion-label>
             <h2 class="name">¡Bienvenido!</h2>
+            <div>
+              <span class="nombre" *ngIf="userInfo.nombre || userInfo.apellidos">
+                {{ userInfo?.nombre || 'Sin nombre' }} {{ userInfo?.apellidos || 'Sin apellidos' }}
+              </span>
+            </div>
           </ion-label>
         </div>
       </div>
 
       <ion-list class="menu-item">
         <ion-menu-toggle>
-
           <ion-item routerLink="user-profile">
             <ion-icon name="person-outline" slot="start"></ion-icon> Datos de Usuario
           </ion-item>
@@ -22,6 +26,19 @@
             <ion-icon name="home" slot="start"></ion-icon> Home
           </ion-item>
 
+          <ion-item routerLink="cv">
+            <ion-icon name="" slot="start"></ion-icon> CV
+          </ion-item>
+
+          <ion-item routerLink="test">
+            <ion-icon name="" slot="start"></ion-icon> test
+          </ion-item>
+
+          <ion-item>
+            <ion-button expand="full" (click)="CerrarSesion()">
+              <ion-icon name="log-out" slot="start"></ion-icon> Cerrar Sesión
+            </ion-button>
+          </ion-item>          
         </ion-menu-toggle>
       </ion-list>
     </ion-content>

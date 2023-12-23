@@ -1,0 +1,67 @@
+ion-content {
+  --background: transparent;
+}
+
+.profile-images {
+  display: inline-block;
+  text-align: center;
+  margin-right: 50px;
+  position: relative;
+
+  // Animación para las imágenes
+  img {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 20%;
+  margin-bottom: 10px;
+
+  // Animación adicional para la imagen
+  animation: fadeIn 0.5s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.drag-drop-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+  ion-icon, p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+
+  &:hover ion-icon, &:hover p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  ion-icon {
+    color: #4d4d4d;
+  }
+
+  p {
+    color: #666;
+    margin-top: 10px;
+  }
+}

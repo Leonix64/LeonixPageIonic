@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UserProfileService } from '../services/user-profile.service';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
+import { ModalImageService } from '../services/modal-image.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,23 +11,30 @@ import { UserProfileService } from '../services/user-profile.service';
 })
 export class UserProfilePage implements OnInit {
 
+  base64Image: string | null = null;
+
   userInfo: any = {
     username: '',
     email: '',
     nombre: '',
     apellidos: '',
     fecha_nacimiento: '',
-    genero_id: '',
+    nombre_genero: '',
     numero_telefono: '',
-    rol_id: ''
+    nombre_rol: '',
   };
+
+  showEditIcon: boolean = false;
 
   constructor(
     private userProfileService: UserProfileService,
+    private modalController: ModalController,
+    private modalImageService: ModalImageService,
   ) { }
 
   ngOnInit() {
     this.getUserInfo();
+    this.getUserImage();
   }
 
   getUserInfo(): void {
@@ -45,4 +55,34 @@ export class UserProfilePage implements OnInit {
       console.log('No se puede encontrar el token en localStorage');
     }
   }
+
+  private getUserImage(): void {
+    const token = localStorage.getItem('authToken') || '';
+    this.modalImageService.getUserImage(token).subscribe(
+      (response) => {
+        if (response.imagen) {
+          this.base64Image = response.imagen;
+        }
+      },
+      (error) => {
+        console.error('Error al cargar la imagen del usuario:', error);
+      }
+    );
+  }
+
+  getBase64Image(base64String: string | null): string {
+    return base64String ? 'data:image/jpeg;base64,' + base64String : '';
+  }
+
+  async openProfileImageModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        profileImage: this.userInfo.profileImage
+      }
+    });
+
+    return await modal.present();
+  }
+
 }

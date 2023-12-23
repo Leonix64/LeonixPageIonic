@@ -1,0 +1,75 @@
+/* Ajustes generales */
+ion-card {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.animated-card {
+  transition: max-height 0.5s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.show-card {
+  max-height: 500px;
+  transform: translateY(0);
+}
+
+.login-card {
+  /* Asegúrate de que la tarjeta de login no se oculte */
+  max-height: none !important;
+}
+
+/* Estilo del botón de login */
+.login-button {
+  margin-left: auto;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* Estilo del botón de enviar */
+.submit-button {
+  margin-top: 15px;
+}
+
+ion-item {
+  margin-bottom: 15px;
+}
+
+ion-input {
+  border-bottom: 1px solid #000;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+ion-card-content {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.submit-button {
+  animation: slideIn 0.5s ease-in-out;
+}

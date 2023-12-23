@@ -1,0 +1,115 @@
+ion-content {
+  --background: url('../../assets/wallhaven-kxj3l1.jpg') center/cover no-repeat fixed;
+  background: var(--background);
+}
+
+#login-card,
+#register-card {
+  display: block;
+  overflow: hidden;
+  transition: min-height 0.5s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.31);
+
+  &.slide-in-from-top {
+    animation: slideInFromTop 0.5s ease-in-out;
+  }
+}
+
+#login-card {
+  min-height: 10vh;
+  
+}
+
+#register-card {
+  min-height: 75vh;
+}
+
+.animated-card {
+  transition: max-height 0.5s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 2px dashed #d2d2d282;
+  border-radius: 8px;
+  opacity: 0.9;
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(77, 77, 77, 0.863);
+  }
+}
+
+.show-card {
+  max-height: none;
+  transform: translateY(0);
+}
+
+.center-content {
+  text-align: center;
+}
+
+.login-button,
+.submit-button {
+  margin: 15px auto;
+  width: 50%;
+  filter: brightness(1);
+  transition: filter 0.3s ease-in-out;
+
+  &:hover {
+    filter: brightness(1.5);
+  }
+}
+
+ion-item {
+  margin-bottom: 15px;
+}
+
+ion-input {
+  border-bottom: 1px solid #ffffff;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+ion-card-content {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-button,
+  .submit-button {
+    width: 100%;
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.7s ease-in-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Editar Imagen de Perfil</ion-title>
+    <!-- Agrega el botón de cerrar modal -->
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+  <div class="ion-text-center">
+
+    <!-- Imagen de perfil actual -->
+    <div class="profile-images">
+      <img [src]="getBase64Image(base64Image)" alt="Imagen de perfil actual" class="profile-image" />
+      <p class="image-label">Imagen Actual</p>
+    </div>
+
+    <!-- Imagen que se cargará -->
+    <div class="profile-images">
+      <img [src]="newImageBase64 ? 'data:image/jpeg;base64,' + newImageBase64 : ''" alt="Imagen a cargar" class="profile-image" />
+      <p class="image-label">Imagen a Cargar</p>
+    </div>
+
+    <input #fileInput type="file" style="display:none" accept="image/*" (change)="onFileSelected($event)">
+    <ion-button expand="full" (click)="openFileInput()">Buscar Imagen</ion-button>
+
+    <div class="drag-drop-message">
+      <ion-icon name="cloud-upload-outline" size="large"></ion-icon>
+      <p>Arrastra la imagen aquí o haz clic para buscarla</p>
+    </div>
+
+    <ion-button expand="full" (click)="onUpload()" [disabled]="!newImageBase64">Confirmar</ion-button>
+    <ion-button expand="full" (click)="onCancel()">Cancelar</ion-button>
+  </div>
+</ion-content>

@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = environment.apiUrl;
   private tokenKey = 'authToken';
 
   constructor(private httpClient: HttpClient) { }
 
-  login(usuario: Usuario): Observable<any> {
+  login(usuarioLog: UsuarioAuth): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const loginUrl = `${this.apiUrl}/login`;
 
-    return this.httpClient.post(loginUrl, usuario, { headers });
+    return this.httpClient.post(loginUrl, usuarioLog, { headers });
   }
 
   setToken(token: string): void {
@@ -31,7 +32,7 @@ export class LoginService {
   }
 }
 
-export interface Usuario {
+export interface UsuarioAuth {
   username: string;
   password: string;
 }

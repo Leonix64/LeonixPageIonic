@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroService {
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -16,7 +17,7 @@ export class RegistroService {
 
     return this.httpClient.post(signupUrl, usuario, { headers });
   }
-  
+
   getGeneroByToken(): Observable<any> {
     const getGeneroUrl = `${this.apiUrl}/get-generos`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
