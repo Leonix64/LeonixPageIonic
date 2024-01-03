@@ -10,13 +10,13 @@ export class LoginService {
   private apiUrl = environment.apiUrl;
   private tokenKey = 'authToken';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   login(usuarioLog: UsuarioAuth): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const loginUrl = `${this.apiUrl}/login`;
 
-    return this.httpClient.post(loginUrl, usuarioLog, { headers });
+    return this.http.post(loginUrl, usuarioLog, { headers });
   }
 
   setToken(token: string): void {

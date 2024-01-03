@@ -1,0 +1,30 @@
+.word-card {
+  background-color: #fff;
+}
+
+.cv-content {
+  text-align: left;
+}
+
+.cv-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.cv-content p {
+  margin-bottom: 10px;
+}
+
+.about-me,
+.experience,
+.skills,
+.education,
+.address,
+.phone,
+.email {
+  font-size: 16px;
+}
+
+/* Puedes ajustar los estilos según tus preferencias */

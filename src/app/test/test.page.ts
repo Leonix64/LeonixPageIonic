@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CvService } from '../services/cv.service';
+import { ChangeDetectorRef } from '@angular/core';
+import * as html2pdf from 'html2pdf.js';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-test',
@@ -7,28 +11,68 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestPage implements OnInit {
 
-  loginCardVisible = false;
-  registerCardVisible = false;
+  cvData: any = {
+    imagen: '',
+    acerca_de_mi: '',
+    experiencia_laboral: '',
+    habilidades_tecnicas: '',
+    estudios_escolares: '',
+    direccion: '',
+    telefono: '',
+    correo_electronico: '',
+  };
 
-  constructor() { }
+  showModal = false;
+  modalData: any;
+  GetCv: any;
 
-  ngOnInit() { }
+  constructor(
+    private cvService: CvService,
+    private cdr: ChangeDetectorRef,
+    public modalController: ModalController,
+    ) { }
 
-  toggleCardLogin() {
-    if (this.registerCardVisible) {
-      this.registerCardVisible = false;
-    }
-    this.loginCardVisible = !this.loginCardVisible;
+  ngOnInit() {
+    this.mostrarCV();
   }
 
-  toggleCardRegister() {
-    if (this.loginCardVisible) {
-      this.loginCardVisible = false;
-    }
-    this.registerCardVisible = !this.registerCardVisible;
+  cargarCV() {
+    const token = localStorage.getItem('authToken') || '';
+
+    this.cvService.postCVData(this.cvData, token).subscribe(
+      (response) => {
+        console.log('CV cargado con éxito', response);
+        // Después de cargar, vuelve a mostrar los datos
+        this.mostrarCV();
+      },
+      (err) => {
+        console.error('Error al cargar el CV', err);
+      }
+    );
   }
 
-  onSubmit(type: string) {
-    console.log(`Formulario ${type} enviado`);
+  mostrarCV() {
+    const token = localStorage.getItem('authToken') || '';
+  
+    this.cvService.getAllCVData(token).subscribe(
+      (response) => {
+        this.GetCv = response;
+        console.log(this.GetCv);
+        this.cdr.detectChanges();  // Forzar la actualización de la vista
+      },
+      (err) => {
+        console.error('Error al obtener datos del CV', err);
+      }
+    );
   }
+
+  openModal(data: any) {
+    this.modalData = data;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+  
 }

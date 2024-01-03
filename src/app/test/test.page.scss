@@ -1,107 +1,96 @@
+// Estilos globales
+ion-header {
+  background-color: #3880ff; // Cambia el color del encabezado según tus preferencias
+}
+
+ion-toolbar {
+  color: #fff; // Cambia el color del texto en la barra de herramientas
+}
+
 ion-content {
-  --background: url('../../assets/wallhaven-kxj3l1.jpg') center/cover no-repeat fixed;
-  background: var(--background);
-}
-
-ion-card {
-  display: block;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
-  background-color: rgba(255, 255, 255, 0.31);
-
-  &.slide-in-from-top {
-    animation: slideInFromTop 0.5s ease-in-out;
+  ion-card {
+    margin: 10px; // Margen entre las tarjetas
   }
 
-  @keyframes slideInFromTop {
-    from {
-      transform: translateY(-100%);
-    }
-
-    to {
-      transform: translateY(0);
+  // Estilos para la sección "Acerca de mí"
+  .about-me-card {
+    background-color: #f8f8f8; // Color de fondo de la tarjeta
+    .about-me-section {
+      padding: 10px;
     }
   }
-}
 
-.animated-card {
-  transition: max-height 0.5s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  border: 2px dashed #d2d2d282;
-  border-radius: 8px;
-  opacity: 0.9;
-}
-
-.animated-card:hover {
-  box-shadow: 0 8px 16px rgba(77, 77, 77, 0.863);
-}
-
-.show-card {
-  max-height: 500px;
-  transform: translateY(0);
-}
-
-.center-content {
-  text-align: center;
-}
-
-.login-button,
-.submit-button {
-  margin: 15px auto;
-  width: 50%;
-  filter: brightness(1);
-  transition: filter 0.3s ease-in-out;
-}
-
-.login-button:hover,
-.submit-button:hover {
-  filter: brightness(1.5);
-}
-
-ion-item {
-  margin-bottom: 15px;
-}
-
-ion-input {
-  border-bottom: 1px solid #ffffff;
-}
-
-.login-subtitle {
-  font-size: 14px;
-  color: #555;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  // Estilos para la sección "Información Personal"
+  .personal-info-card {
+    background-color: #f0f0f0; // Color de fondo de la tarjeta
+    .contact-section {
+      padding: 10px;
+      div {
+        margin-bottom: 5px;
+      }
+    }
   }
 
-  to {
-    opacity: 1;
-  }
-}
-
-ion-card-content {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@media only screen and (max-width: 600px) {
-  .login-button,
-  .submit-button {
-    width: 100%;
-  }
-}
-
-.slide-in-left {
-  animation: slideInLeft 0.7s ease-in-out;
-}
-
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
+  // Estilos para la tarjeta personal
+  .custom-card {
+    .custom-card-header {
+      background-color: #3880ff; // Color de fondo del encabezado de la tarjeta
+      ion-card-title {
+        color: #fff; // Color del texto del encabezado de la tarjeta
+      }
+    }
+    .custom-card-content {
+      padding: 10px;
+    }
   }
 
-  to {
-    transform: translateX(0);
+  // Estilos para la sección "Experiencia y Educación"
+  .experience-section {
+    h2 {
+      color: #3880ff; // Color de los títulos de experiencia
+    }
+    h3 {
+      color: #333; // Color de los subtítulos de experiencia
+    }
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  // Estilos para la sección "Habilidades"
+  .skills-card {
+    .skills-header {
+      background-color: #3880ff; // Color de fondo del encabezado de habilidades
+      ion-card-title {
+        color: #fff; // Color del texto del encabezado de habilidades
+      }
+    }
+    .skills-content {
+      padding: 10px;
+      .skills-section {
+        h2 {
+          color: #3880ff; // Color de los títulos de habilidades
+        }
+        ul {
+          list-style-type: none;
+          padding: 0;
+          li {
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  // Estilos para la sección "Estudios"
+  .studies-card {
+    .studies-section {
+      h2 {
+        color: #3880ff; // Color de los títulos de estudios
+      }
+      p {
+        margin-bottom: 10px;
+      }
+    }
   }
 }

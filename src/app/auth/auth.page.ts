@@ -104,9 +104,9 @@ export class AuthPage implements OnInit {
     this.registerCardVisible = !this.registerCardVisible;
   }
 
-  onSubmitTest(type: string) {
+  /*onSubmitTest(type: string) {
     console.log(`Formulario ${type} enviado`);
-  }
+  }*/
 
   private showSnackBar(message: string, type: 'success' | 'error') {
     const panelClass = type === 'success' ? ['success-snackbar'] : ['error-snackbar'];

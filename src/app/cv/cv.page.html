@@ -1,80 +1,84 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>CV de Angel Gonzalez Hernandez</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="Volver"></ion-back-button>
+    </ion-buttons>
+    <ion-title>CV</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Acerca de Mí</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>
-        Soy un desarrollador apasionado con un compromiso continuo hacia el progreso y la adopción de las últimas tecnologías.
-        Mi enfoque se orienta a la creación de soluciones innovadoras que se adapten de manera ágil a las cambiantes demandas
-        del panorama tecnológico. Mi mentalidad proactiva me impulsa a anticipar y satisfacer las necesidades futuras de los usuarios.
-      </p>
-    </ion-card-content>
-  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <!-- Tarjeta en el lado izquierdo -->
+      <ion-col size="6" class="ion-padding">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Tarjeta Izquierda</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <!-- Formulario para añadir información -->
+            <form #cvForm="ngForm">
+              <ion-list lines="none">
+                <ion-item>
+                  <ion-label position="stacked">Imagen URL</ion-label>
+                  <ion-input [(ngModel)]="cvData.imagen" name="imagen" type="text"></ion-input>
+                </ion-item>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Experiencia Laboral</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label>Desarrollador Back-end, WorkNest, Durango, Dgo. (Septiembre 2023 - Diciembre 2023)</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Desarrollador Front-end y Back-end, Tacos pelao'os, Durango, Dgo. (Mayo 2022 - Agosto 2022)</ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+                <ion-item>
+                  <ion-label position="stacked">Acerca de mí</ion-label>
+                  <ion-textarea [(ngModel)]="cvData.acerca_de_mi" name="acerca_de_mi"></ion-textarea>
+                </ion-item>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Especialización y Habilidades Técnicas</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>
-        Me especializo en el desarrollo de aplicaciones web y móviles utilizando el framework Ionic y Angular, con un enfoque claro
-        en proporcionar una experiencia de usuario excepcional. He integrado middleware de manera estratégica para potenciar tanto
-        la eficiencia como la funcionalidad del sistema, aportando significativamente al desarrollo de soluciones robustas y eficientes
-        tanto para plataformas web como móviles.
-      </p>
-      <ion-list>
-        <ion-item>HTML, CSS, JavaScript</ion-item>
-        <ion-item>PHP, Java</ion-item>
-        <ion-item>MySQL</ion-item>
-        <ion-item>Laravel, Angular, Ionic, Flutter</ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+                <ion-item>
+                  <ion-label position="stacked">Experiencia Laboral</ion-label>
+                  <ion-textarea [(ngModel)]="cvData.experiencia_laboral" name="experiencia_laboral"></ion-textarea>
+                </ion-item>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Estudios</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label>Ingeniería en Software, Universidad Politécnica de Durango, Durango, Dgo. (09/2020 – 12/2023)</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Soporte y Mantenimiento de Equipos de Cómputo, CETIS 148, Durango, Dgo. (08/2017 – 07/2020)</ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+                <ion-item>
+                  <ion-label position="stacked">Habilidades Técnicas</ion-label>
+                  <ion-textarea [(ngModel)]="cvData.habilidades_tecnicas" name="habilidades_tecnicas"></ion-textarea>
+                </ion-item>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Contacto</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Coahuila 1206, Morga, 34010 Durango, Dgo.</p>
-      <p>Teléfono: +52 6182587863</p>
-      <p>Email: angelgonzalezh08gmail.com</p>
-    </ion-card-content>
-  </ion-card>
+                <ion-item>
+                  <ion-label position="stacked">Estudios Escolares</ion-label>
+                  <ion-textarea [(ngModel)]="cvData.estudios_escolares" name="estudios_escolares"></ion-textarea>
+                </ion-item>
 
+                <ion-item>
+                  <ion-label position="stacked">Dirección</ion-label>
+                  <ion-input [(ngModel)]="cvData.direccion" name="direccion" type="text"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="stacked">Teléfono</ion-label>
+                  <ion-input [(ngModel)]="cvData.telefono" name="telefono" type="tel"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="stacked">Correo Electrónico</ion-label>
+                  <ion-input [(ngModel)]="cvData.correo_electronico" name="correo_electronico" type="email"></ion-input>
+                </ion-item>
+              </ion-list>
+              <ion-button expand="full" type="submit" (click)="cargarCV()"
+                [disabled]="cvForm.invalid">Postear</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- Tarjeta en el lado derecho -->
+      <ion-col size="6" class="ion-padding">
+        <ion-card class="word-card">
+          <ion-card-header>
+            <ion-card-title>Tarjeta Derecha</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+          </ion-card-content>
+          <ion-spinner></ion-spinner>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -9,20 +9,20 @@ import { environment } from '../../environments/environment';
 export class RegistroService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   registroUsuario(usuario: Usuario): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const signupUrl = `${this.apiUrl}/signup`;
 
-    return this.httpClient.post(signupUrl, usuario, { headers });
+    return this.http.post(signupUrl, usuario, { headers });
   }
 
   getGeneroByToken(): Observable<any> {
     const getGeneroUrl = `${this.apiUrl}/get-generos`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    return this.httpClient.get(getGeneroUrl, { headers });
+    return this.http.get(getGeneroUrl, { headers });
   }
 }
 
