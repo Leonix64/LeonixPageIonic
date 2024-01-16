@@ -22,8 +22,6 @@ export class TestPage implements OnInit {
     correo_electronico: '',
   };
 
-  showModal = false;
-  modalData: any;
   GetCv: any;
 
   constructor(
@@ -64,15 +62,6 @@ export class TestPage implements OnInit {
         console.error('Error al obtener datos del CV', err);
       }
     );
-  }
-
-  openModal(data: any) {
-    this.modalData = data;
-    this.showModal = true;
-  }
-
-  closeModal() {
-    this.showModal = false;
   }
   
 }

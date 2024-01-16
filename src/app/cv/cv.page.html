@@ -3,82 +3,106 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home" text="Volver"></ion-back-button>
     </ion-buttons>
-    <ion-title>CV</ion-title>
+    <ion-title>Curriculum Vitae</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
+
+  <ion-col size="6" class="ion-padding">
+
+<!-- Tarjeta para seleccionar imagen -->
+<ion-card class="image-card">
+  <ion-card-header>
+    <ion-card-title>Seleccionar Imagen</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+
+    <!-- Aviso para relación 1:1 -->
+    <div class="image-ratio-warning">
+      Por favor, sube imágenes con una relación de aspecto 1:1
+    </div>
+
+    <ion-item>
+      <ion-label>
+        <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" />
+        <ion-button expand="full" (click)="openFileInput()">Seleccionar Imagen</ion-button>
+      </ion-label>
+    </ion-item>
+
     <ion-row>
-      <!-- Tarjeta en el lado izquierdo -->
-      <ion-col size="6" class="ion-padding">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Tarjeta Izquierda</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <!-- Formulario para añadir información -->
-            <form #cvForm="ngForm">
-              <ion-list lines="none">
-                <ion-item>
-                  <ion-label position="stacked">Imagen URL</ion-label>
-                  <ion-input [(ngModel)]="cvData.imagen" name="imagen" type="text"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="stacked">Acerca de mí</ion-label>
-                  <ion-textarea [(ngModel)]="cvData.acerca_de_mi" name="acerca_de_mi"></ion-textarea>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="stacked">Experiencia Laboral</ion-label>
-                  <ion-textarea [(ngModel)]="cvData.experiencia_laboral" name="experiencia_laboral"></ion-textarea>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="stacked">Habilidades Técnicas</ion-label>
-                  <ion-textarea [(ngModel)]="cvData.habilidades_tecnicas" name="habilidades_tecnicas"></ion-textarea>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="stacked">Estudios Escolares</ion-label>
-                  <ion-textarea [(ngModel)]="cvData.estudios_escolares" name="estudios_escolares"></ion-textarea>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="stacked">Dirección</ion-label>
-                  <ion-input [(ngModel)]="cvData.direccion" name="direccion" type="text"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="stacked">Teléfono</ion-label>
-                  <ion-input [(ngModel)]="cvData.telefono" name="telefono" type="tel"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="stacked">Correo Electrónico</ion-label>
-                  <ion-input [(ngModel)]="cvData.correo_electronico" name="correo_electronico" type="email"></ion-input>
-                </ion-item>
-              </ion-list>
-              <ion-button expand="full" type="submit" (click)="cargarCV()"
-                [disabled]="cvForm.invalid">Postear</ion-button>
-            </form>
-          </ion-card-content>
-        </ion-card>
+      <!-- Imagen de ejemplo -->
+      <ion-col size="6">
+        <p>ejemplo</p>
+        <div class="image-square">
+          <div class="label izquierda">300px</div>
+          <div class="label derecha">300px</div>
+          <div class="label arriba">300px</div>
+          <div class="label abajo">300px</div>
+        </div>
       </ion-col>
 
-      <!-- Tarjeta en el lado derecho -->
-      <ion-col size="6" class="ion-padding">
-        <ion-card class="word-card">
-          <ion-card-header>
-            <ion-card-title>Tarjeta Derecha</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-          </ion-card-content>
-          <ion-spinner></ion-spinner>
-        </ion-card>
+      <!-- Selector de imagen y vista previa -->
+      <ion-col size="6">
+        <p>imagen a cargar</p>
+        <div class="image-preview" *ngIf="selectedImageURL">
+          <img [src]="selectedImageURL" alt="Imagen seleccionada">
+        </div>
       </ion-col>
-
     </ion-row>
-  </ion-grid>
+
+  </ion-card-content>
+</ion-card>
+
+
+
+    <!-- Formulario principal del CV -->
+    <ion-card>
+      <ion-card-content>
+        <form #cvForm="ngForm" (ngSubmit)="cargarCV()">
+          <ion-list lines="none">
+
+            <!-- Campos del formulario -->
+            <ion-item>
+              <ion-label position="stacked">Acerca de mí</ion-label>
+              <ion-textarea [(ngModel)]="cvData.acerca_de_mi" name="acerca_de_mi"></ion-textarea>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Experiencia Laboral</ion-label>
+              <ion-textarea [(ngModel)]="cvData.experiencia_laboral" name="experiencia_laboral"></ion-textarea>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Habilidades Técnicas</ion-label>
+              <ion-textarea [(ngModel)]="cvData.habilidades_tecnicas" name="habilidades_tecnicas"></ion-textarea>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Estudios Escolares</ion-label>
+              <ion-textarea [(ngModel)]="cvData.estudios_escolares" name="estudios_escolares"></ion-textarea>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Dirección</ion-label>
+              <ion-input [(ngModel)]="cvData.direccion" name="direccion" type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Teléfono</ion-label>
+              <ion-input [(ngModel)]="cvData.telefono" name="telefono" type="tel"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Correo Electrónico</ion-label>
+              <ion-input [(ngModel)]="cvData.correo_electronico" name="correo_electronico" type="email"></ion-input>
+            </ion-item>
+
+          </ion-list>
+
+          <ion-button expand="full" type="submit" [disabled]="cvForm.invalid">Publicar</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
 </ion-content>

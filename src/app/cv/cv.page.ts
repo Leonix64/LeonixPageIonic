@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CvService } from '../services/cv.service';
 import { ChangeDetectorRef } from '@angular/core';
 import * as html2pdf from 'html2pdf.js';
@@ -21,15 +21,17 @@ export class CvPage implements OnInit {
     correo_electronico: '',
   };
 
-  GetCv: any;
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
+  base64Image: string | null = null;
+  selectedImageURL: string | ArrayBuffer | null = null;
 
   constructor(
     private cvService: CvService,
     private cdr: ChangeDetectorRef,
-    ) { }
+  ) { }
 
   ngOnInit() {
-    this.mostrarCV();
+    //this.mostrarCV();
   }
 
   cargarCV() {
@@ -38,8 +40,6 @@ export class CvPage implements OnInit {
     this.cvService.postCVData(this.cvData, token).subscribe(
       (response) => {
         console.log('CV cargado con éxito', response);
-        // Después de cargar, vuelve a mostrar los datos
-        this.mostrarCV();
       },
       (err) => {
         console.error('Error al cargar el CV', err);
@@ -47,18 +47,27 @@ export class CvPage implements OnInit {
     );
   }
 
-  mostrarCV() {
-    const token = localStorage.getItem('authToken') || '';
-  
-    this.cvService.getAllCVData(token).subscribe(
-      (response) => {
-        this.GetCv = response;
-        console.log(this.GetCv);
-        this.cdr.detectChanges();  // Forzar la actualización de la vista
-      },
-      (err) => {
-        console.error('Error al obtener datos del CV', err);
-      }
-    );
+  openFileInput() {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: any): void {
+    console.log('File Selected', event.target.files[0]);
+    const files: FileList | null = event.target.files;
+    if (files && files.length > 0) {
+      const selectedFile: File = files[0];
+      this.selectedImageURL = URL.createObjectURL(selectedFile);
+      this.convertToBase64(selectedFile);
+    }
+  }  
+
+  convertToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.base64Image = (reader.result as string).split(',')[1];
+      this.cvData.imagen = this.base64Image;
+      console.log('Imagen en base64', this.base64Image);
+    };
+    reader.readAsDataURL(file);
   }
 }
