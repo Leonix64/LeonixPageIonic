@@ -11,14 +11,14 @@ import * as html2pdf from 'html2pdf.js';
 export class CvPage implements OnInit {
 
   cvData: any = {
-    imagen: '',
-    acerca_de_mi: '',
-    experiencia_laboral: '',
-    habilidades_tecnicas: '',
-    estudios_escolares: '',
-    direccion: '',
-    telefono: '',
-    correo_electronico: '',
+    image: '',
+    about_me: '',
+    work_xp: '',
+    skills: '',
+    education: '',
+    address: '',
+    phone: '',
+    email: '',
   };
 
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
@@ -42,9 +42,22 @@ export class CvPage implements OnInit {
         console.log('CV cargado con éxito', response);
       },
       (err) => {
-        console.error('Error al cargar el CV', err);
+        console.error(err);
       }
     );
+  }
+
+  actualizarCV() {
+    const token = localStorage.getItem('authToken') || '';
+
+    this.cvService.updateCVData(this.cvData, token).subscribe(
+      (response) => {
+        console.log('CV actualizado con éxito', response);
+      },
+      (err) => {
+        console.error(err);
+      }
+    )
   }
 
   openFileInput() {
@@ -65,7 +78,7 @@ export class CvPage implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       this.base64Image = (reader.result as string).split(',')[1];
-      this.cvData.imagen = this.base64Image;
+      this.cvData.image = this.base64Image;
       console.log('Imagen en base64', this.base64Image);
     };
     reader.readAsDataURL(file);

@@ -22,10 +22,6 @@ export class HomePage {
     this.showSnackBar('Token del usuario mostrado con fines de depuración', 'success');
   }
 
-  VerDetallesProyecto(proyecto: string) {
-    console.log(`Detalles del proyecto: ${proyecto}`);
-  }
-
   private showSnackBar(message: string, type: 'success' | 'error') {
     const panelClass = type === 'success' ? ['success-snackbar'] : ['error-snackbar'];
 

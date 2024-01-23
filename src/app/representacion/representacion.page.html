@@ -1,20 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" text="Volver"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Representación Épica</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="no-scroll">
 
   <!-- Perfil -->
   <div class="profile-container">
     <div class="avatar-container">
       <div class="avatar">
-        <img src="../../assets/leonix/X.png" alt="Avatar Image" class="base-image">
-        <img src="../../assets/leonix/X-2.png" alt="Hover Image" class="hover-image">
+        <img src="../../assets/leonix/image1.png" alt="Avatar Image" class="base-image">
+        <img src="../../assets/leonix/image2.png" alt="Hover Image" class="hover-image">
       </div>
     </div>
     <div class="name">
@@ -23,12 +14,18 @@
       <p class="nickname">(Leonix)</p>
     </div>
   </div>
+  
+  <div class="reloj">
+    <h2>Fecha y Hora</h2>
+    <p>{{ currentDateTime | date: 'dd/MM/yyyy - hh:mm:ss a' }}</p>
+  </div> 
 
   <!-- Tarjeta de información -->
   <ion-card class="info-container">
-    <ion-row>
 
-      <ion-col size="6">
+    <ion-row>
+      <!-- Acerca de mí -->
+      <ion-col size-md="6" size-xs="12">
         <ion-title>ACERCA DE MÍ</ion-title>
         <div class="info-content">
           <p class="role">Desarrollador de Software</p>
@@ -44,7 +41,8 @@
         </div>
       </ion-col>
 
-      <ion-col size="6">
+      <!-- Habilidades técnicas -->
+      <ion-col size-md="6" size-xs="12">
         <ion-title>HABILIDADES TÉCNICAS</ion-title>
         <div class="skills-container">
           <!-- Grupo 1 -->
@@ -85,10 +83,41 @@
             <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/dart/dart-original.svg" alt="Dart">
             <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/vscode/vscode-original.svg" alt="VS Code">
           </div>
-          
         </div>
       </ion-col>
-
     </ion-row>
+
+    <!-- Carrusel -->
+    <ion-title>PORTAFOLIO</ion-title>
+
+    <ion-card class="carousel">
+      <div class="carousel-inner">
+        <img *ngIf="currentImage" [src]="currentImage" alt="Carousel Image">
+      </div>
+    
+      <ion-buttons>
+        <ion-button (click)="prevImage()">Anterior</ion-button>
+        <ion-button (click)="nextImage()">Siguiente</ion-button>
+      </ion-buttons>
+    </ion-card>
+    <br>
+
+  </ion-card>
+
+  <!-- Footer -->
+  <ion-card class="footer">
+    <div class="footer-content">
+      <p class="copyright">© 2023 Desarrollador Web | Angel Gonzalez. Todos los derechos reservados.</p>
+
+      <div class="contact-info">
+        <p>Contacto:</p>
+        <a href="https://www.facebook.com/leonix6408" target="_blank" class="social-button facebook" title="Facebook"></a>
+        <a href="https://twitter.com/Leonix6408" target="_blank" class="social-button twitter" title="Twitter"></a>
+        <a href="https://www.instagram.com/leonix_64/" target="_blank" class="social-button instagram" title="Instagram"></a>
+        <a href="https://discord.gg/FW9Hxn8DAy" target="_blank" class="social-button discord" title="Discord: leonix64"></a>
+        <a href="https://github.com/Leonix64" target="_blank" class="social-button github" title="GitHub"></a>
+        <a href="https://steamcommunity.com/id/Leonix64/" target="_blank" class="social-button steam" title="Steam"></a>
+      </div>
+    </div>
   </ion-card>
 </ion-content>

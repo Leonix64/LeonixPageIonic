@@ -8,58 +8,70 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
+  <!-- Perfil -->
+  <ion-row>
+    <ion-col size="6">
+      <div class="profile">
+        <div class="avatar">
+          <img src="../../assets/leonix/image1.png" alt="Avatar Image" class="photo">
+        </div>
+      </div>
+    </ion-col>
 
-    <!-- Tarjeta personal -->
-    <ion-row>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Angel Gonzalez Hernandez</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <!-- Contenido de la tarjeta -->
-        </ion-card-content>
-      </ion-card>
-    </ion-row>
+    <ion-col size="6">
+      <div class="name-container">
+        <div class="name">
+          <p class="first-name typing-animation">Angel</p>
+          <p class="last-name typing-animation">Gonzalez</p>
+          <p class="last-name typing-animation">Hernandez</p>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
 
-    <!-- Acerca de mí -->
-    <ion-row>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Acerca de mí</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <div>
-            <h2>Acerca de mí</h2>
-            <p>
-              Me considero un desarrollador apasionado con un compromiso continuo hacia el progreso y la adopción de las
-              últimas tecnologías. Mi enfoque se orienta a la creación de soluciones innovadoras que se adapten de
-              manera
-              ágil a las cambiantes demandas del panorama tecnológico. Mi mentalidad proactiva me impulsa a anticipar y
-              satisfacer las necesidades futuras de los usuarios.
-            </p>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </ion-row>
+  <!-- Informacion CV -->
+  <ion-card class="info-container about-me">
+    <ion-card-header>
+      <ion-card-title>Acerca de mí</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>¡Hola! Soy Angel Gonzalez Hernandez, un profesional apasionado por...</p>
+    </ion-card-content>
+  </ion-card>
 
-    <!-- Información Personal -->
-    <ion-row>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Información Personal</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <div>
-            <h2>CONTACTO</h2>
-            <div>Coahuila 1206, Morga, 34010</div>
-            <div>Durango, Dgo.</div>
-            <div>+52 618 258 7863</div>
-            <div>angelgonzalezh08-gmail.com</div>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </ion-row>
-    
-  </ion-grid>
+  <ion-card class="info-container experience">
+    <ion-card-header>
+      <ion-card-title>Experiencia Laboral</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Add your experience details here -->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="info-container skills">
+    <ion-card-header>
+      <ion-card-title>Habilidades Técnicas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Add your skills details here -->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="info-container education">
+    <ion-card-header>
+      <ion-card-title>Estudios</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Add your education details here -->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="info-container contact">
+    <ion-card-header>
+      <ion-card-title>Contacto</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Add your contact details here -->
+    </ion-card-content>
+  </ion-card>
 </ion-content>

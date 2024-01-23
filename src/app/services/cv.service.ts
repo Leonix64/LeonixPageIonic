@@ -13,9 +13,16 @@ export class CvService {
 
   postCVData(cvData: CvData, token: string): Observable<any> {
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-    const uploadCVEndpoint = `${this.apiUrl}/upload-cv`;
+    const uploadCVEndpoint = `${this.apiUrl}/postCV`;
 
     return this.http.post<any>(uploadCVEndpoint, cvData, { headers });
+  }
+
+  updateCVData(cvData: CvData, token: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const updateCVEndpoint = `${this.apiUrl}/updateCV`;
+
+    return this.http.put<any>(updateCVEndpoint, cvData, { headers });
   }
 
   getAllCVData(token: string): Observable<any> {
