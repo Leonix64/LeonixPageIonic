@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { UserProfileService } from '../services/user-profile.service';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import { ModalImageService } from '../services/modal-image.service';
+import { UserProfileService } from '../services/user-profile.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,8 +10,6 @@ import { ModalImageService } from '../services/modal-image.service';
   styleUrls: ['./user-profile.page.scss'],
 })
 export class UserProfilePage implements OnInit {
-
-  base64Image: string | null = null;
 
   userInfo: any = {
     username: '',
@@ -24,12 +22,18 @@ export class UserProfilePage implements OnInit {
     nombre_rol: '',
   };
 
-  showEditIcon: boolean = false;
+  base64Image: string | null = null;
+
+  mostrarAbout = false;
+  mostrarFriends = false;
+  mostrarPhotos = false;
+  mostrarMore = false;
+  mostrarData = false;
 
   constructor(
-    private userProfileService: UserProfileService,
     private modalController: ModalController,
-    private modalImageService: ModalImageService,
+    private modalService: ModalImageService,
+    private userService: UserProfileService,
   ) { }
 
   ngOnInit() {
@@ -37,35 +41,28 @@ export class UserProfilePage implements OnInit {
     this.getUserImage();
   }
 
-  getUserInfo(): void {
-    const token = localStorage.getItem('authToken');
-    console.log('Token en LocalStorage: ' + token);
-
-    if (token) {
-      this.userProfileService.getUserInfo(token).subscribe(
-        (data) => {
-          this.userInfo = data;
-          console.log('Informacion del usuario:', this.userInfo);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    } else {
-      console.log('No se puede encontrar el token en localStorage');
-    }
+  getUserInfo() {
+    const token = localStorage.getItem('authToken') || '';
+    this.userService.getUserInfo(token).subscribe(
+      (data) => {
+        this.userInfo = data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
   }
 
-  private getUserImage(): void {
+  getUserImage() {
     const token = localStorage.getItem('authToken') || '';
-    this.modalImageService.getUserImage(token).subscribe(
+    this.modalService.getUserImage(token).subscribe(
       (response) => {
         if (response.imagen) {
           this.base64Image = response.imagen;
         }
       },
-      (error) => {
-        console.error('Error al cargar la imagen del usuario:', error);
+      (err) => {
+        console.log(err);
       }
     );
   }
@@ -74,15 +71,35 @@ export class UserProfilePage implements OnInit {
     return base64String ? 'data:image/jpeg;base64,' + base64String : '';
   }
 
-  async openProfileImageModal() {
-    const modal = await this.modalController.create({
+  EditImage() {
+    const modal = this.modalController.create({
       component: ModalPage,
       componentProps: {
-        profileImage: this.userInfo.profileImage
+        profileImage: this.getBase64Image(this.base64Image),
       }
     });
+    return modal.then(modal => modal.present());
+  }
 
-    return await modal.present();
+  /* Ion-card para cada seccion */
+  toggleAbout() {
+    this.mostrarAbout = !this.mostrarAbout;
+  }
+
+  toggleFriends() {
+    this.mostrarFriends = !this.mostrarFriends;
+  }
+
+  togglePhotos() {
+    this.mostrarPhotos = !this.mostrarPhotos;
+  }
+
+  toggleMore() {
+    this.mostrarMore = !this.mostrarMore;
+  }
+
+  toggleData() {
+    this.mostrarData = !this.mostrarData;
   }
 
 }

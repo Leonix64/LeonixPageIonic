@@ -18,31 +18,36 @@
 
       <ion-list class="menu-item">
         <ion-menu-toggle>
+          <ion-item routerLink="home">
+            <ion-icon name="home-outline" slot="start"></ion-icon> Home
+          </ion-item>
+
           <ion-item routerLink="user-profile">
             <ion-icon name="person-outline" slot="start"></ion-icon> Datos de Usuario
           </ion-item>
 
-          <ion-item routerLink="home">
-            <ion-icon name="home" slot="start"></ion-icon> Home
+          <ion-item routerLink="cv-form">
+            <ion-icon name="document-text-outline" slot="start"></ion-icon> CV Form
           </ion-item>
 
           <ion-item routerLink="cv">
-            <ion-icon name="document-text-outline" slot="start"></ion-icon> CV
+            <ion-icon name="eye-outline" slot="start"></ion-icon> CV
           </ion-item>
 
           <ion-item routerLink="test">
-            <ion-icon name="" slot="start"></ion-icon> Test
+            <ion-icon name="terminal-outline" slot="start"></ion-icon> Test
           </ion-item>
 
-          <ion-item routerLink="representacion">
-            <ion-icon name="" slot="start"></ion-icon> Repre
+          <ion-item routerLink="auth">
+            <ion-icon name="log-in-outline" slot="start"></ion-icon> Login
           </ion-item>
 
           <ion-item>
             <ion-button expand="full" (click)="CerrarSesion()">
               <ion-icon name="log-out" slot="start"></ion-icon> Cerrar Sesión
             </ion-button>
-          </ion-item>          
+          </ion-item>
+
         </ion-menu-toggle>
       </ion-list>
     </ion-content>

@@ -35,14 +35,16 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
-  },  {
+  },
+  {
     path: 'cv',
     loadChildren: () => import('./cv/cv.module').then( m => m.CvPageModule)
   },
   {
-    path: 'representacion',
-    loadChildren: () => import('./representacion/representacion.module').then( m => m.RepresentacionPageModule)
+    path: 'cv-form',
+    loadChildren: () => import('./cv-form/cv-form.module').then( m => m.CvFormPageModule)
   },
+
 
 
 ];

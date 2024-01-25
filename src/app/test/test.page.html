@@ -3,75 +3,138 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home" text="Volver"></ion-back-button>
     </ion-buttons>
-    <ion-title>CV</ion-title>
+    <ion-title>Test</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- Perfil -->
-  <ion-row>
-    <ion-col size="6">
-      <div class="profile">
-        <div class="avatar">
-          <img src="../../assets/leonix/image1.png" alt="Avatar Image" class="photo">
-        </div>
+  <!-- Perfil de Usuario -->
+  <ion-card class="info">
+    <ion-title>Perfil</ion-title>
+    <ion-card class="profile">
+      <div class="avatar" (click)="EditImage()">
+        <img [src]="getBase64Image(base64Image)" alt="">
       </div>
-    </ion-col>
 
-    <ion-col size="6">
-      <div class="name-container">
-        <div class="name">
-          <p class="first-name typing-animation">Angel</p>
-          <p class="last-name typing-animation">Gonzalez</p>
-          <p class="last-name typing-animation">Hernandez</p>
-        </div>
+      <div class="user-info">
+        <div class="username">¡Hola, {{ userInfo?.username || 'amigo' }}! ¿Cómo estas hoy?</div>
       </div>
-    </ion-col>
-  </ion-row>
+    </ion-card>
 
-  <!-- Informacion CV -->
-  <ion-card class="info-container about-me">
-    <ion-card-header>
-      <ion-card-title>Acerca de mí</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>¡Hola! Soy Angel Gonzalez Hernandez, un profesional apasionado por...</p>
-    </ion-card-content>
+    <ion-buttons>
+      <ion-button (click)="toggleAbout()">About</ion-button>
+      <ion-button (click)="toggleFriends()">Friends</ion-button>
+      <ion-button (click)="togglePhotos()">Photos</ion-button>
+      <ion-button (click)="toggleMore()">More</ion-button>
+      <ion-button (click)="toggleData()">Data</ion-button>
+    </ion-buttons>
   </ion-card>
 
-  <ion-card class="info-container experience">
-    <ion-card-header>
-      <ion-card-title>Experiencia Laboral</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <!-- Add your experience details here -->
-    </ion-card-content>
+  <!-- Acerca del Usuario -->
+  <ion-card *ngIf="mostrarAbout" class="about">
+    <ion-title>About - Proximamente</ion-title>
   </ion-card>
 
-  <ion-card class="info-container skills">
-    <ion-card-header>
-      <ion-card-title>Habilidades Técnicas</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <!-- Add your skills details here -->
-    </ion-card-content>
+  <ion-card *ngIf="mostrarFriends" class="friends">
+    <ion-title>Friends - Proximamente</ion-title>
   </ion-card>
 
-  <ion-card class="info-container education">
-    <ion-card-header>
-      <ion-card-title>Estudios</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <!-- Add your education details here -->
-    </ion-card-content>
+  <ion-card *ngIf="mostrarPhotos" class="photos">
+    <ion-title>Photos - Proximamente</ion-title>
   </ion-card>
 
-  <ion-card class="info-container contact">
-    <ion-card-header>
-      <ion-card-title>Contacto</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <!-- Add your contact details here -->
-    </ion-card-content>
+  <ion-card *ngIf="mostrarMore" class="more">
+    <ion-title>More- Proximamente</ion-title>
   </ion-card>
+
+  <!-- Vista de Datos -->
+  <ion-card *ngIf="mostrarData" class="data">
+
+    <ion-title>Data</ion-title>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-item lines="none">
+            <ion-label>
+              <h2>Bienvenido/a, {{ userInfo.username || 'amigo' }}</h2>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item class="data-item">
+            <ion-label>
+              <h3>Nombre</h3>
+              <p>{{ userInfo.nombre || 'Sin nombre' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item class="data-item">
+            <ion-label>
+              <h3>Apellidos</h3>
+              <p>{{ userInfo.apellidos || 'Sin apellidos' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item class="data-item">
+            <ion-label>
+              <h3>Email</h3>
+              <p>{{ userInfo.email || 'Sin email' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item class="data-item">
+            <ion-label>
+              <h3>Género</h3>
+              <p>{{ userInfo.nombre_genero || 'Sin género' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item class="data-item">
+            <ion-label>
+              <h3>Fecha de Nacimiento</h3>
+              <p>{{ userInfo.fecha_nacimiento || 'Sin fecha de nacimiento' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item class="data-item">
+            <ion-label>
+              <h3>Teléfono</h3>
+              <p>{{ userInfo.numero_telefono || 'Sin número de teléfono' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item class="data-item">
+            <ion-label>
+              <h3>Rol</h3>
+              <p>{{ userInfo.nombre_rol || 'Sin rol' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
 </ion-content>

@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { CvService } from '../services/cv.service';
+import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import * as html2pdf from 'html2pdf.js';
+import { ModalController } from '@ionic/angular';
+import { CvService } from '../services/cv.service';
+import { UserProfileService } from '../services/user-profile.service';
 
 @Component({
   selector: 'app-cv',
@@ -21,17 +23,21 @@ export class CvPage implements OnInit {
     email: '',
   };
 
-  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
-  base64Image: string | null = null;
-  selectedImageURL: string | ArrayBuffer | null = null;
+  userInfo: any = {
+    nombre: '',
+    apellidos: '',
+  };
 
   constructor(
     private cvService: CvService,
+    private UserProfileS: UserProfileService,
     private cdr: ChangeDetectorRef,
+    public modalController: ModalController,
   ) { }
 
   ngOnInit() {
-    //this.mostrarCV();
+    this.mostrarCV();
+    this.getUser();
   }
 
   cargarCV() {
@@ -40,19 +46,24 @@ export class CvPage implements OnInit {
     this.cvService.postCVData(this.cvData, token).subscribe(
       (response) => {
         console.log('CV cargado con éxito', response);
+        //this.mostrarCV();
       },
       (err) => {
-        console.error(err);
+        console.error('Error al cargar el CV', err);
       }
     );
   }
 
-  actualizarCV() {
+  mostrarCV() {
     const token = localStorage.getItem('authToken') || '';
 
-    this.cvService.updateCVData(this.cvData, token).subscribe(
+    this.cvService.getCVData(token).subscribe(
       (response) => {
-        console.log('CV actualizado con éxito', response);
+        this.cvData = response.cvData;
+        console.log('Informacion del CV:', this.cvData);
+
+        // Asegúrate de que cvData.image contenga la cadena de datos en base64 correcta
+        // this.cvData.image = 'data:image/png;base64,' + this.cvData.image;
       },
       (err) => {
         console.error(err);
@@ -60,27 +71,19 @@ export class CvPage implements OnInit {
     )
   }
 
-  openFileInput() {
-    this.fileInput.nativeElement.click();
-  }
+  getUser(): void {
+    const token = localStorage.getItem('authToken');
 
-  onFileSelected(event: any): void {
-    console.log('File Selected', event.target.files[0]);
-    const files: FileList | null = event.target.files;
-    if (files && files.length > 0) {
-      const selectedFile: File = files[0];
-      this.selectedImageURL = URL.createObjectURL(selectedFile);
-      this.convertToBase64(selectedFile);
+    if (token) {
+      this.UserProfileS.getUserInfo(token).subscribe(
+        (response) => {
+          this.userInfo = response;
+          console.log('Informacion del usuario:', this.userInfo);
+        },
+        (err) => {
+          console.error(err);
+        }
+      )
     }
-  }  
-
-  convertToBase64(file: File): void {
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.base64Image = (reader.result as string).split(',')[1];
-      this.cvData.image = this.base64Image;
-      console.log('Imagen en base64', this.base64Image);
-    };
-    reader.readAsDataURL(file);
   }
 }

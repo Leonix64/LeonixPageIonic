@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RepresentacionPage } from './representacion.page';
+import { CvFormPage } from './cv-form.page';
 
-describe('RepresentacionPage', () => {
-  let component: RepresentacionPage;
-  let fixture: ComponentFixture<RepresentacionPage>;
+describe('CvFormPage', () => {
+  let component: CvFormPage;
+  let fixture: ComponentFixture<CvFormPage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(RepresentacionPage);
+    fixture = TestBed.createComponent(CvFormPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

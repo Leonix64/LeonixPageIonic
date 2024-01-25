@@ -1,25 +1,389 @@
-#container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+$background-url: url(https://w.wallhaven.cc/full/yj/wallhaven-yjmxgx.jpg);
+$avatar-size: 250px;
+$avatar-border-width: 5px;
+$avatar-hover-scale: 1.1;
+$animation-duration: 1.5s;
+$animation-delay: 0.5s;
 
-  strong {
-    font-size: 20px;
-    line-height: 26px;
+ion-content {
+  --background: #{$background-url} center/cover no-repeat fixed;
+  // Ocultar scroll
+  --offset-bottom: auto!important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  background: var(--background);
+  opacity: 0;
+  animation: fadeIn #{$animation-duration} ease-in-out #{$animation-delay} forwards;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .avatar {
+    position: relative;
+    overflow: hidden;
+    width: $avatar-size;
+    height: $avatar-size;
+    border-radius: 50%;
+    //border: $avatar-border-width solid #fff;
+    transform: scale(0);
+    transition: transform 0.8s ease-in-out;
+
+    .base-image,
+    .hover-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hover-image {
+      opacity: 0;
+    }
+
+    &:hover {
+      transform: scale($avatar-hover-scale);
+
+      .base-image {
+        opacity: 0;
+      }
+
+      .hover-image {
+        opacity: 1;
+      }
+    }
+
+    animation: slideInFromTop $animation-duration ease-in-out #{$animation-delay + 0.3s} forwards;
+  }
+
+  .name {
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    p {
+      margin: 15px 0;
+      font-size: 2.5em;
+      color: #fff;
+
+      &.first-name {
+        font-weight: bold;
+        text-transform: uppercase;
+
+        text-shadow:
+          0 0 10px rgba(255, 255, 255, 0.8),
+          0 0 20px rgba(255, 255, 255, 0.8),
+          0 0 30px rgba(255, 255, 255, 0.8),
+          0 0 40px rgba(255, 255, 255, 0.8),
+          0 0 70px rgba(255, 255, 255, 0.8);
+      }
+
+      &.last-name {
+        font-style: italic;
+
+        text-shadow:
+          0 0 10px rgba(255, 255, 255, 0.8),
+          0 0 20px rgba(255, 255, 255, 0.8),
+          0 0 30px rgba(255, 255, 255, 0.8),
+          0 0 40px rgba(255, 255, 255, 0.8),
+          0 0 70px rgba(255, 255, 255, 0.8);
+      }
+
+      &.nickname {
+        font-size: 1.5em;
+        letter-spacing: 5px;
+
+        text-shadow:
+          0 0 10px rgba(0, 255, 251, 0.8),
+          0 0 20px rgba(0, 255, 251, 0.8),
+          0 0 30px rgba(0, 255, 251, 0.8),
+          0 0 40px rgba(0, 255, 251, 0.8),
+          0 0 70px rgba(0, 115, 255, 0.8);
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    animation: slideInFromTop $animation-duration ease-in-out #{$animation-delay + 0.7s} forwards;
+  }
+}
+
+// Keyframes //
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Tarjeta de información //
+
+// Colores
+$background-color: #00000060;
+$box-shadow-color: white;
+$hover-filter-color: saturate(150%);
+
+// Tamaños
+$border-radius: 15px;
+$box-shadow: 0 0 10px $box-shadow-color;
+$img-size: 50px;
+
+// Transiciones
+$transition-speed: 0.3s;
+$transition-easing: ease-in-out;
+
+// Primer columna
+.info-container {
+  background-color: $background-color;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  .info-content {
+    padding: 20px;
+
+    .role {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .bio {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .additional-skills {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .skills-list {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+  }
+
+  ion-title {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  ion-col {
+    margin-top: 20px;
+  }
+
+  // Segunda columna //
+  .skills-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    .skill-group {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    img {
+      width: $img-size;
+      height: $img-size;
+      margin: 10px;
+      transition: transform $transition-speed $transition-easing, filter $transition-speed $transition-easing;
+      cursor: pointer;
+      filter: blur(0.5px) saturate(90%);
+
+      &:hover {
+        transform: scale(1.2);
+        filter: blur(0px) $hover-filter-color;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    ion-col {
+      &:first-child {
+        order: 2;
+      }
+    }
+  }
+}
+
+// Reloj //
+.reloj {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   p {
-    font-size: 16px;
-    line-height: 22px;
-    color: #8c8c8c;
-    margin: 0;
+    background-color: #333;
+    color: white;
+    display: inline;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
   }
 
-  a {
-    text-decoration: none;
-    color: #007bff;
+  @media screen and (max-width: 768px) {
+    .linea-blanca {
+      width: 50%;
+    }
+  }
+}
+
+// Footer //
+
+// Colores
+$footer-bg-color: #00000060;
+$box-shadow-color: white;
+
+// Tamaños
+$footer-padding: 20px;
+$footer-margin-top: 20px;
+$icon-size: 40px;
+$icon-hover-scale: 1.2;
+$icon-hover-saturation: 150%;
+
+.footer {
+  background-color: $footer-bg-color;
+  box-shadow: 0 0 10px $box-shadow-color;
+  padding: $footer-padding;
+  text-align: center;
+  margin-top: $footer-margin-top;
+
+  .footer-content {
+    color: white;
+
+    .copyright {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .contact-info {
+      font-size: 14px;
+
+      .social-button {
+        width: $icon-size;
+        height: $icon-size;
+        margin: 0 5px;
+        background-size: cover;
+        display: inline-block;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale($icon-hover-scale);
+          filter: saturate($icon-hover-saturation);
+        }
+      }
+
+      // Backgrounds for each social network
+      .facebook {
+        background-image: url(https://cdn2.iconfinder.com/data/icons/social-aquiocons/512/Aquicon-Facebook.png);
+      }
+
+      .twitter {
+        background-image: url(https://cdn2.iconfinder.com/data/icons/threads-by-instagram/24/x-logo-twitter-new-brand-512.png);
+      }
+
+      .instagram {
+        background-image: url(https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Instagram-512.png);
+      }
+
+      .discord {
+        background-image: url(https://cdn0.iconfinder.com/data/icons/social-media-2473/128/discord_message_interaction_logo_communication-512.png);
+      }
+
+      .github {
+        background-image: url(https://cdn2.iconfinder.com/data/icons/social-aquiocons/512/Aquicon-Github.png);
+      }
+
+      .steam {
+        background-image: url(https://cdn2.iconfinder.com/data/icons/gaming-platforms-logo-shapes/250/steam_logo-512.png);
+      }
+    }
+  }
+}
+
+// Carrusel //
+.carousel {
+  background: gray;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .carousel-inner {
+    height: 420px;
+    overflow: hidden;
+    border-radius: 15px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  ion-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 0 0 15px 15px;
+    border-top: 1px solid #ddd;
+  }
+
+  ion-button {
+    flex: 1;
+    margin: 0 5px;
+    --background: #f5f5f5;
+    color: #2f2f2f;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+
+    .carousel-inner {
+      height: 300px;
+    }
   }
 }

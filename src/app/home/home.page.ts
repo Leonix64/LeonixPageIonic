@@ -1,33 +1,55 @@
-import { Component } from '@angular/core';
-import { LoginService } from '../services/login.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit, OnDestroy {
 
-  public token: string | null = '';
+  images: string[] = [
+    'https://w.wallhaven.cc/full/4o/wallhaven-4oj17p.jpg',
+    'https://w.wallhaven.cc/full/mp/wallhaven-mpdz88.png',
+    'https://w.wallhaven.cc/full/md/wallhaven-mdjrqy.jpg',
+    'https://w.wallhaven.cc/full/4v/wallhaven-4vgg35.jpg',
+    'https://w.wallhaven.cc/full/o5/wallhaven-o571k9.png',
+    'https://w.wallhaven.cc/full/nk/wallhaven-nkzypq.jpg',
+    'https://w.wallhaven.cc/full/d6/wallhaven-d6vj93.png',
+    'https://w.wallhaven.cc/full/k7/wallhaven-k78eoq.jpg',
+  ];
 
-  constructor(
-    private loginService: LoginService,
-    private snackBar: MatSnackBar
-  ) {}
+  currentImage: string;
+  currentDateTime: Date = new Date();
+  private intervalId: any;
 
-  GetTokenUser() {
-    this.token = this.loginService.getToken() || '';
-    console.log(this.token);
-    this.showSnackBar('Token del usuario mostrado con fines de depuración', 'success');
+  constructor() {
+    this.currentImage = this.images[0];
+    this.intervalId = setInterval(() => this.updateDateTime(), 1000);
   }
 
-  private showSnackBar(message: string, type: 'success' | 'error') {
-    const panelClass = type === 'success' ? ['success-snackbar'] : ['error-snackbar'];
+  ngOnInit() {
+  }
 
-    this.snackBar.open(message, 'Cerrar', {
-      duration: 3000,
-      panelClass: panelClass,
-    });
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
+  }
+
+  updateDateTime() {
+    this.currentDateTime = new Date();
+  }
+
+  changeImage(index: number) {
+    const newIndex = (index + this.images.length) % this.images.length;
+    this.currentImage = this.images[newIndex];
+  }
+
+  prevImage() {
+    const currentIndex = this.images.indexOf(this.currentImage);
+    this.changeImage(currentIndex - 1);
+  }
+
+  nextImage() {
+    const currentIndex = this.images.indexOf(this.currentImage);
+    this.changeImage(currentIndex + 1);
   }
 }

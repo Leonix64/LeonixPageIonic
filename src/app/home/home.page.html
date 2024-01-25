@@ -1,29 +1,123 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="menu-content"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Bienvenido a mi Portafolio
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="no-scroll">
 
-<ion-content [fullscreen]="true">
-
-  <!-- Información del Usuario -->
-  <div>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Información del Usuario</ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
-        <p>¡Hola, visitante! Aquí encontrarás información interesante sobre mí.</p>
-        <ion-button (click)="GetTokenUser()">Obtener Token de Usuario</ion-button>
-        <p *ngIf="token">Tu Token: {{ token }}</p>
-      </ion-card-content>
-    </ion-card>
+  <!-- Perfil -->
+  <div class="profile-container">
+    <div class="avatar-container">
+      <div class="avatar">
+        <img src="../../assets/leonix/image1.png" alt="Avatar Image" class="base-image">
+        <img src="../../assets/leonix/image2.png" alt="Hover Image" class="hover-image">
+      </div>
+    </div>
+    <div class="name">
+      <p class="first-name">Angel</p>
+      <p class="last-name">Gonzalez Hernandez</p>
+      <p class="nickname">(Leonix)</p>
+    </div>
   </div>
+  
+  <div class="reloj">
+    <h2>Fecha y Hora</h2>
+    <p>{{ currentDateTime | date: 'dd/MM/yyyy - hh:mm:ss a' }}</p>
+  </div> 
 
+  <!-- Tarjeta de información -->
+  <ion-card class="info-container">
+
+    <ion-row>
+      <!-- Acerca de mí -->
+      <ion-col size-md="6" size-xs="12">
+        <ion-title>ACERCA DE MÍ</ion-title>
+        <div class="info-content">
+          <p class="role">Desarrollador de Software</p>
+          <p class="bio">Me gradué en Ingeniería en Software, donde inicialmente me familiaricé con Java antes de adentrarme en el emocionante mundo del desarrollo web y móvil. Este último campo capturó mi interés y me llevó a utilizar diversas herramientas y frameworks para crear soluciones innovadoras.</p>
+          <p class="additional-skills">Además, completé una carrera técnica en Soporte y Mantenimiento de Equipos de Cómputo. Gracias a esta formación, poseo habilidades sólidas en diversas áreas, incluyendo:</p>
+
+          <ul class="skills-list">
+            <li>Realización de limpiezas para garantizar un funcionamiento óptimo.</li>
+            <li>Organización y tendido de cables de red Ethernet para una conectividad eficiente.</li>
+            <li>Formateo de unidades, tanto en niveles básicos como en entornos más especializados, incluso con procedimientos similares a los estándares militares.</li>
+            <li>Y más...</li>
+          </ul>
+        </div>
+      </ion-col>
+
+      <!-- Habilidades técnicas -->
+      <ion-col size-md="6" size-xs="12">
+        <ion-title>HABILIDADES TÉCNICAS</ion-title>
+        <div class="skills-container">
+          <!-- Grupo 1 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/html5/html5-original.svg" alt="HTML">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/css3/css3-original.svg" alt="CSS">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/javascript/javascript-original.svg" alt="JavaScript">
+          </div>
+
+          <!-- Grupo 2 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/typescript/typescript-original.svg" alt="TypeScript">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/php/php-original.svg" alt="PHP">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/mysql/mysql-original-wordmark.svg" alt="MySQL">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/python/python-original.svg" alt="Python">
+          </div>
+          
+          <!-- Grupo 3 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/angularjs/angularjs-original.svg" alt="Angular">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/nodejs/nodejs-original.svg" alt="NodeJs">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/arduino/arduino-original.svg" alt="Arduino">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/flutter/flutter-original.svg" alt="Flutter">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/laravel/laravel-plain.svg" alt="Laravel">
+          </div>
+
+          <!-- Grupo 4 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/ionic/ionic-original.svg" alt="Ionic">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/java/java-original.svg" alt="Java">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/kotlin/kotlin-original.svg" alt="Kotlin">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/matlab/matlab-original.svg" alt="Matlab">
+          </div>
+
+          <!-- Grupo 5 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/photoshop/photoshop-line.svg" alt="Photoshop">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/dart/dart-original.svg" alt="Dart">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/vscode/vscode-original.svg" alt="VS Code">
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Carrusel -->
+    <ion-title>PORTAFOLIO</ion-title>
+
+    <ion-card class="carousel">
+      <div class="carousel-inner">
+        <img *ngIf="currentImage" [src]="currentImage" alt="Carousel Image">
+      </div>
+    
+      <ion-buttons>
+        <ion-button (click)="prevImage()">Anterior</ion-button>
+        <ion-button (click)="nextImage()">Siguiente</ion-button>
+      </ion-buttons>
+    </ion-card>
+    <br>
+
+  </ion-card>
+
+  <!-- Footer -->
+  <ion-card class="footer">
+    <div class="footer-content">
+      <p class="copyright">© 2023 Desarrollador Web | Angel Gonzalez. Todos los derechos reservados.</p>
+
+      <div class="contact-info">
+        <p>Contacto:</p>
+        <a href="https://www.facebook.com/leonix6408" target="_blank" class="social-button facebook" title="Facebook"></a>
+        <a href="https://twitter.com/Leonix6408" target="_blank" class="social-button twitter" title="Twitter"></a>
+        <a href="https://www.instagram.com/leonix_64/" target="_blank" class="social-button instagram" title="Instagram"></a>
+        <a href="https://discord.gg/FW9Hxn8DAy" target="_blank" class="social-button discord" title="Discord: leonix64"></a>
+        <a href="https://github.com/Leonix64" target="_blank" class="social-button github" title="GitHub"></a>
+        <a href="https://steamcommunity.com/id/Leonix64/" target="_blank" class="social-button steam" title="Steam"></a>
+      </div>
+    </div>
+  </ion-card>
 </ion-content>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CvService } from '../services/cv.service';
-import { ChangeDetectorRef } from '@angular/core';
-import * as html2pdf from 'html2pdf.js';
 import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
+import { ModalImageService } from '../services/modal-image.service';
+import { UserProfileService } from '../services/user-profile.service';
 
 @Component({
   selector: 'app-test',
@@ -11,57 +11,95 @@ import { ModalController } from '@ionic/angular';
 })
 export class TestPage implements OnInit {
 
-  cvData: any = {
-    imagen: '',
-    acerca_de_mi: '',
-    experiencia_laboral: '',
-    habilidades_tecnicas: '',
-    estudios_escolares: '',
-    direccion: '',
-    telefono: '',
-    correo_electronico: '',
+  userInfo: any = {
+    username: '',
+    email: '',
+    nombre: '',
+    apellidos: '',
+    fecha_nacimiento: '',
+    nombre_genero: '',
+    numero_telefono: '',
+    nombre_rol: '',
   };
 
-  GetCv: any;
+  base64Image: string | null = null;
+
+  mostrarAbout = false;
+  mostrarFriends = false;
+  mostrarPhotos = false;
+  mostrarMore = false;
+  mostrarData = false;
 
   constructor(
-    private cvService: CvService,
-    private cdr: ChangeDetectorRef,
-    public modalController: ModalController,
-    ) { }
+    private modalController: ModalController,
+    private modalService: ModalImageService,
+    private userService: UserProfileService,
+  ) { }
 
   ngOnInit() {
-    this.mostrarCV();
+    this.getUserInfo();
+    this.getUserImage();
   }
 
-  cargarCV() {
+  getUserInfo() {
     const token = localStorage.getItem('authToken') || '';
-
-    this.cvService.postCVData(this.cvData, token).subscribe(
-      (response) => {
-        console.log('CV cargado con éxito', response);
-        // Después de cargar, vuelve a mostrar los datos
-        this.mostrarCV();
+    this.userService.getUserInfo(token).subscribe(
+      (data) => {
+        this.userInfo = data;
       },
       (err) => {
-        console.error('Error al cargar el CV', err);
+        console.log(err);
+      }
+    )
+  }
+
+  getUserImage() {
+    const token = localStorage.getItem('authToken') || '';
+    this.modalService.getUserImage(token).subscribe(
+      (response) => {
+        if (response.imagen) {
+          this.base64Image = response.imagen;
+        }
+      },
+      (err) => {
+        console.log(err);
       }
     );
   }
 
-  mostrarCV() {
-    const token = localStorage.getItem('authToken') || '';
-  
-    this.cvService.getAllCVData(token).subscribe(
-      (response) => {
-        this.GetCv = response;
-        console.log(this.GetCv);
-        this.cdr.detectChanges();  // Forzar la actualización de la vista
-      },
-      (err) => {
-        console.error('Error al obtener datos del CV', err);
-      }
-    );
+  getBase64Image(base64String: string | null): string {
+    return base64String ? 'data:image/jpeg;base64,' + base64String : '';
   }
-  
+
+  EditImage() {
+    const modal = this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        profileImage: this.getBase64Image(this.base64Image),
+      }
+    });
+    return modal.then(modal => modal.present());
+  }
+
+  /* Ion-card para cada seccion */
+  toggleAbout() {
+    this.mostrarAbout = !this.mostrarAbout;
+  }
+
+  toggleFriends() {
+    this.mostrarFriends = !this.mostrarFriends;
+  }
+
+  togglePhotos() {
+    this.mostrarPhotos = !this.mostrarPhotos;
+  }
+
+  toggleMore() {
+    this.mostrarMore = !this.mostrarMore;
+  }
+
+  toggleData() {
+    this.mostrarData = !this.mostrarData;
+  }
+
 }

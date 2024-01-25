@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RepresentacionPageRoutingModule } from './representacion-routing.module';
+import { CvFormPageRoutingModule } from './cv-form-routing.module';
 
-import { RepresentacionPage } from './representacion.page';
+import { CvFormPage } from './cv-form.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RepresentacionPageRoutingModule
+    CvFormPageRoutingModule
   ],
-  declarations: [RepresentacionPage]
+  declarations: [CvFormPage]
 })
-export class RepresentacionPageModule {}
+export class CvFormPageModule {}

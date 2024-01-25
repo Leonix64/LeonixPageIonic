@@ -25,21 +25,21 @@ export class CvService {
     return this.http.put<any>(updateCVEndpoint, cvData, { headers });
   }
 
-  getAllCVData(token: string): Observable<any> {
+  getCVData(token: string): Observable<any> {
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-    const getCVDataUrl = `${this.apiUrl}/get-cv-data`;
+    const getCVEndpoint = `${this.apiUrl}/getCV`;
 
-    return this.http.get(getCVDataUrl, { headers });
+    return this.http.get<any>(getCVEndpoint, { headers });
   }
 }
 
 export interface CvData {
-  imagen: string;
-  acerca_de_mi: string;
-  experiencia_laboral: string;
-  habilidades_tecnicas: string;
-  estudios_escolares: string;
-  direccion: string;
-  telefono: string;
-  correo_electronico: string;
+  image: string;
+  about_me: string;
+  work_xp: string;
+  skills: string;
+  education: string;
+  address: string;
+  phone: string;
+  email: string;
 }
