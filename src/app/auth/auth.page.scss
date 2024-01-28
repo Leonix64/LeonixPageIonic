@@ -1,116 +1,72 @@
 ion-content {
-  //--background: url(https://64.media.tumblr.com/3a933563c4301dbbe23356ce78b6e526/9df3306dd86f79dd-33/s2048x3072/3e2f2efefaf4a624c4895414011e9b9452698ee4.gifv) center/cover no-repeat fixed;
-  --background: url(https://w.wallhaven.cc/full/e7/wallhaven-e7jj6r.jpg) center/cover no-repeat fixed;
+  --background: url("https://w.wallhaven.cc/full/l3/wallhaven-l3971q.png") center/cover no-repeat fixed;
+
+  // Ocultar scroll
+  --offset-bottom: auto !important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+      display: none;
+  }
+
   background: var(--background);
 }
 
-#login-card,
-#register-card {
-  display: block;
-  overflow: hidden;
-  transition: min-height 0.5s ease-in-out;
-  background-color: rgba(255, 255, 255, 0.31);
+.header {
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.655);
+  align-items: center;
+  padding: 10px;
+  border: 2px solid white;
+  color: white;
+}
 
-  &.slide-in-from-top {
-    animation: slideInFromTop 0.5s ease-in-out;
+// BOTONES //
+.auth {
+  background-color: rgba(159, 159, 159, 0.6);
+  border-radius: 15px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px white;
+  padding: 10px;
+
+  ion-title {
+      padding: 10px;
+      color: black;
+  }
+
+  ion-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+
+      .auth-button {
+          flex-grow: 1;
+          font-size: 14px;
+          border-radius: 10px;
+          margin: 0 5px;
+          box-shadow: 0 0 5px rgb(0, 0, 0);
+          color: black;
+      }
   }
 }
 
-#login-card {
-  min-height: 10vh;
-  
-}
+// LOGIN //
+.login {
+  background-color: rgba(0, 0, 0, 0.655);
+  align-items: center;
+  padding: 10px;
+  border: 2px solid white;
 
-#register-card {
-  min-height: 75vh;
-}
-
-.animated-card {
-  transition: max-height 0.5s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  border: 2px dashed #d2d2d282;
-  border-radius: 8px;
-  opacity: 0.9;
-
-  &:hover {
-    box-shadow: 0 8px 16px rgba(77, 77, 77, 0.863);
+  .data-item {
+      padding: 10px;
   }
 }
 
-.show-card {
-  max-height: none;
-  transform: translateY(0);
-}
-
-.center-content {
-  text-align: center;
-}
-
-.login-button,
-.submit-button {
-  margin: 15px auto;
-  width: 50%;
-  filter: brightness(1);
-  transition: filter 0.3s ease-in-out;
-
-  &:hover {
-    filter: brightness(1.5);
-  }
-}
-
-ion-item {
-  margin-bottom: 15px;
-}
-
-ion-input {
-  border-bottom: 1px solid #ffffff;
-}
-
-.login-subtitle {
-  font-size: 14px;
-  color: #555;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInFromTop {
-  from {
-    transform: translateY(-100%);
-  }
-
-  to {
-    transform: translateY(0);
-  }
-}
-
-ion-card-content {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@media only screen and (max-width: 600px) {
-  .login-button,
-  .submit-button {
-    width: 100%;
-  }
-}
-
-.slide-in-left {
-  animation: slideInLeft 0.7s ease-in-out;
-}
-
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
+// REGISTRO //
+.register {
+  background-color: rgba(0, 0, 0, 0.655);
+  align-items: center;
+  padding: 10px;
+  border: 2px solid white;
 }

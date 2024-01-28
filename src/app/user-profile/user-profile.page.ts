@@ -4,6 +4,9 @@ import { ModalPage } from '../modal/modal.page';
 import { ModalImageService } from '../services/modal-image.service';
 import { UserProfileService } from '../services/user-profile.service';
 
+// Pruebas
+import { TestPage } from '../test/test.page';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.page.html',
@@ -74,6 +77,7 @@ export class UserProfilePage implements OnInit {
   EditImage() {
     const modal = this.modalController.create({
       component: ModalPage,
+      //component: TestPage,
       componentProps: {
         profileImage: this.getBase64Image(this.base64Image),
       }

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../modal/modal.page';
-import { ModalImageService } from '../services/modal-image.service';
-import { UserProfileService } from '../services/user-profile.service';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { RegistroService, Usuario } from '../services/registro.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-test',
@@ -11,95 +11,109 @@ import { UserProfileService } from '../services/user-profile.service';
 })
 export class TestPage implements OnInit {
 
-  userInfo: any = {
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
+
+  mostrarLogin = false;
+  mostrarRegister = false;
+
+  usuario: Usuario = {
     username: '',
     email: '',
+    password: '',
+    confirmPassword: '',
     nombre: '',
     apellidos: '',
     fecha_nacimiento: '',
-    nombre_genero: '',
+    genero_id: 10,
     numero_telefono: '',
-    nombre_rol: '',
   };
 
-  base64Image: string | null = null;
-
-  mostrarAbout = false;
-  mostrarFriends = false;
-  mostrarPhotos = false;
-  mostrarMore = false;
-  mostrarData = false;
+  // Variables para almacenar
+  token = '';
+  rol = '';
+  generos: any[] = [];
 
   constructor(
-    private modalController: ModalController,
-    private modalService: ModalImageService,
-    private userService: UserProfileService,
+    private router: Router,
+    private toastController: ToastController,
+    private registerService: RegistroService,
+    private loginService: LoginService,
   ) { }
 
   ngOnInit() {
-    this.getUserInfo();
-    this.getUserImage();
+    this.getGeneros();
   }
 
-  getUserInfo() {
-    const token = localStorage.getItem('authToken') || '';
-    this.userService.getUserInfo(token).subscribe(
-      (data) => {
-        this.userInfo = data;
-      },
-      (err) => {
-        console.log(err);
-      }
-    )
-  }
-
-  getUserImage() {
-    const token = localStorage.getItem('authToken') || '';
-    this.modalService.getUserImage(token).subscribe(
+  IniciarSesion() {
+    this.loginService.login(this.usuario).subscribe(
       (response) => {
-        if (response.imagen) {
-          this.base64Image = response.imagen;
-        }
+        this.token = response.token;
+        this.loginService.setToken(this.token);
+        // console.log('Token: ' + this.token);
+
+        this.router.navigate(['/home']);
+
+        this.presentToast('Inicio de Sesión exitoso');
       },
-      (err) => {
-        console.log(err);
+      (error) => {
+        this.presentErrorToast('Error al ingresar los datos, inténtelo de nuevo.');
       }
     );
   }
 
-  getBase64Image(base64String: string | null): string {
-    return base64String ? 'data:image/jpeg;base64,' + base64String : '';
-  }
+  Registro() {
+    if (this.usuario.password !== this.usuario.confirmPassword) {
+      this.presentErrorToast('Las contraseñas no coinciden');
+      return;
+    }
 
-  EditImage() {
-    const modal = this.modalController.create({
-      component: ModalPage,
-      componentProps: {
-        profileImage: this.getBase64Image(this.base64Image),
+    this.registerService.registroUsuario(this.usuario).subscribe(
+      () => {
+        this.presentToast('Usuario registrado con éxito');
+      },
+      (error) => {
+        this.presentErrorToast('Error al registrar el usuario. Por favor, intente de nuevo');
       }
+    );
+  }
+
+  getGeneros() {
+    this.registerService.getGeneroByToken().subscribe(
+      (data) => {
+        this.generos = data;
+      },
+      (error) => {
+        // console.log('Error al obtener lista de géneros', error);
+      }
+    );
+  }
+
+  // BOTONES
+  toggleLogin() {
+    this.mostrarLogin = !this.mostrarLogin;
+  }
+
+  toggleRegister() {
+    this.mostrarRegister = !this.mostrarRegister;
+  }
+
+  private async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 3000,
+      position: 'bottom',
     });
-    return modal.then(modal => modal.present());
+    toast.present();
   }
 
-  /* Ion-card para cada seccion */
-  toggleAbout() {
-    this.mostrarAbout = !this.mostrarAbout;
-  }
-
-  toggleFriends() {
-    this.mostrarFriends = !this.mostrarFriends;
-  }
-
-  togglePhotos() {
-    this.mostrarPhotos = !this.mostrarPhotos;
-  }
-
-  toggleMore() {
-    this.mostrarMore = !this.mostrarMore;
-  }
-
-  toggleData() {
-    this.mostrarData = !this.mostrarData;
+  private async presentErrorToast(message: string) {
+    const toastError = await this.toastController.create({
+      message,
+      duration: 3000,
+      position: 'bottom',
+      color: 'danger',
+    });
+    toastError.present();
   }
 
 }

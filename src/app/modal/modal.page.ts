@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ModalImageService } from '../services/modal-image.service';
 import { ModalController, ToastController } from '@ionic/angular';
 
@@ -8,26 +8,63 @@ import { ModalController, ToastController } from '@ionic/angular';
   styleUrls: ['./modal.page.scss'],
 })
 export class ModalPage implements OnInit {
+
   base64Image: string | null = null;
   newImageBase64: string | null = null;
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
 
   constructor(
-    private modalImageService: ModalImageService,
+    private modalService: ModalImageService,
     private modalController: ModalController,
-    private toastController: ToastController
+    private toastController: ToastController,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getUserImage();
   }
 
-  openFileInput(): void {
+  async onUpload() {
+    if (this.newImageBase64) {
+      try {
+        const token = localStorage.getItem('authToken') || '';
+        const response = await this.modalService.uploadImage(this.newImageBase64, token).toPromise();
+        // console.log('OnUpload successful', response);
+        this.modalController.dismiss();
+
+        // Recargar la página manualmente
+        // window.location.reload();
+
+        const toast = await this.toastController.create({
+          message: 'Imagen subida exitosamente. Recargue la página para notar los cambios.',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      } catch (error) {
+        console.error('Error al subir la imagen:', error);
+        // Manejar el error
+        const toastError = await this.toastController.create({
+          message: 'Error al subir la imagen. Por favor, inténtelo de nuevo.',
+          duration: 3000,
+          position: 'bottom',
+          color: 'danger'
+        });
+        toastError.present();
+      }
+    }
+  }
+
+
+  onCancel() {
+    this.modalController.dismiss();
+  }
+
+  openFileInput() {
     this.fileInput.nativeElement.click();
   }
 
-  onFileSelected(event: any): void {
-    console.log('Archivo seleccionado:', event.target.files[0]);
+  onFileSelect(event: any) {
+    //console.log('Archivo seleccionado: ', event.target.files[0]);
     const files: FileList = event.target.files;
     if (files.length > 0) {
       const base64Image = files[0];
@@ -35,74 +72,40 @@ export class ModalPage implements OnInit {
     }
   }
 
-  async onUpload() {
-    if (this.newImageBase64) {
-      const token = localStorage.getItem('authToken') || '';
-      try {
-        const response = await this.modalImageService.uploadImage(this.newImageBase64, token).toPromise();
-        console.log('Imagen subida exitosamente:', response);
-
-        const toast = await this.toastController.create({
-          message: 'Imagen subida exitosamente',
-          duration: 2000,
-          position: 'top'
-        });
-        toast.present();
-      } catch (error) {
-        console.error(error);
+  getUserImage() {
+    const token = localStorage.getItem('authToken') || '';
+    this.modalService.getUserImage(token).subscribe(
+      (response) => {
+        if (response.imagen) {
+          this.base64Image = response.imagen;
+        }
       }
-    }
+    )
   }
 
-  onConfirm(): void {
-    if (this.newImageBase64) {
-      this.onUpload();
-      this.modalController.dismiss();
-    }
+  getBase64Image(base64String: string | null): string {
+    return base64String ? 'data:image/jpeg;base64,' + base64String : '';
   }
 
-  onCancel(): void {
-    this.modalController.dismiss();
-  }
-
-  private convertImageToBase64(file: File): void {
+  convertImageToBase64(file: File) {
     const reader = new FileReader();
     reader.onloadend = () => {
       const base64String: string | ArrayBuffer | null = reader.result;
       if (base64String) {
         const base64Data = (base64String as string).split(',')[1];
         this.newImageBase64 = base64Data;
-        console.log('Imagen en base64:', this.newImageBase64);
+        //console.log('Imagen en Base64: ' + this.newImageBase64);
       }
     };
     reader.readAsDataURL(file);
   }
 
-  private getUserImage(): void {
-    const token = localStorage.getItem('authToken') || '';
-    this.modalImageService.getUserImage(token).subscribe(
-      (response) => {
-        if (response.imagen) {
-          this.base64Image = response.imagen;
-        }
-      },
-      (error) => {
-        console.error('Error al cargar la imagen del usuario:', error);
-      }
-    );
-  }
-
-  getBase64Image(base64String: string | null): string {
-    return base64String ? 'data:image/jpeg;base64,' + base64String : '';
-  }
-  
-
-  onDragOver(event: DragEvent): void {
+  onDragOver(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
   }
 
-  onDrop(event: DragEvent): void {
+  onDrop(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
     const files = event.dataTransfer?.files;
@@ -112,4 +115,5 @@ export class ModalPage implements OnInit {
       this.convertImageToBase64(base64Image);
     }
   }
+
 }

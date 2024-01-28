@@ -1,140 +1,103 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" text="Volver"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Test</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <!-- Perfil de Usuario -->
-  <ion-card class="info">
-    <ion-title>Perfil</ion-title>
-    <ion-card class="profile">
-      <div class="avatar" (click)="EditImage()">
-        <img [src]="getBase64Image(base64Image)" alt="">
-      </div>
-
-      <div class="user-info">
-        <div class="username">¡Hola, {{ userInfo?.username || 'amigo' }}! ¿Cómo estas hoy?</div>
-      </div>
+<ion-content [fullscreen]="true" class="ion-padding">
+    <ion-card class="header">
+        <ion-title class="ion-text-center">Login & Register</ion-title>
     </ion-card>
 
-    <ion-buttons>
-      <ion-button (click)="toggleAbout()">About</ion-button>
-      <ion-button (click)="toggleFriends()">Friends</ion-button>
-      <ion-button (click)="togglePhotos()">Photos</ion-button>
-      <ion-button (click)="toggleMore()">More</ion-button>
-      <ion-button (click)="toggleData()">Data</ion-button>
-    </ion-buttons>
-  </ion-card>
+    <ion-card class="auth">
+        
+        <ion-buttons>
+            <ion-button class="auth-button" (click)="toggleLogin()">Login</ion-button>
+            <ion-button class="auth-button" (click)="toggleRegister()">Register</ion-button>
+        </ion-buttons>
+    </ion-card>
 
-  <!-- Acerca del Usuario -->
-  <ion-card *ngIf="mostrarAbout" class="about">
-    <ion-title>About - Proximamente</ion-title>
-  </ion-card>
+    <!-- LOGIN -->
+    <ion-card *ngIf="mostrarLogin" class="login">
+        <ion-title>Login - Próximamente</ion-title>
 
-  <ion-card *ngIf="mostrarFriends" class="friends">
-    <ion-title>Friends - Proximamente</ion-title>
-  </ion-card>
+        <form (ngSubmit)="IniciarSesion()">
+            <ion-item>
+                <ion-label position="floating">Nombre de usuario</ion-label>
+                <ion-input type="text" name="username" required [(ngModel)]="usuario.username"></ion-input>
+            </ion-item>
 
-  <ion-card *ngIf="mostrarPhotos" class="photos">
-    <ion-title>Photos - Proximamente</ion-title>
-  </ion-card>
+            <ion-item>
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input type="password" name="password" required [(ngModel)]="usuario.password"></ion-input>
+            </ion-item>
 
-  <ion-card *ngIf="mostrarMore" class="more">
-    <ion-title>More- Proximamente</ion-title>
-  </ion-card>
+            <ion-button expand="full" type="submit" class="submit-button">Enviar</ion-button>
+        </form>
+    </ion-card>
 
-  <!-- Vista de Datos -->
-  <ion-card *ngIf="mostrarData" class="data">
+    <!-- REGISTRO -->
+    <ion-card *ngIf="mostrarRegister" class="register">
+        <ion-title>Register - Próximamente</ion-title>
 
-    <ion-title>Data</ion-title>
+        <form (ngSubmit)="Registro()" #registroForm="ngForm">
 
-    <ion-grid>
-      <ion-row>
-        <ion-col size="12" class="ion-text-center">
-          <ion-item lines="none">
-            <ion-label>
-              <h2>Bienvenido/a, {{ userInfo.username || 'amigo' }}</h2>
-            </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+            <ion-item>
+                <ion-label position="floating">Nombre de usuario:</ion-label>
+                <ion-input type="text" name="username" required [(ngModel)]="usuario.username"></ion-input>
+            </ion-item>
 
-      <ion-row>
-        <ion-col size="6">
-          <ion-item class="data-item">
-            <ion-label>
-              <h3>Nombre</h3>
-              <p>{{ userInfo.nombre || 'Sin nombre' }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-col>
+            <ion-item>
+                <ion-label position="floating">Correo electrónico:</ion-label>
+                <ion-input type="email" name="email" required [(ngModel)]="usuario.email"></ion-input>
+            </ion-item>
 
-        <ion-col size="6">
-          <ion-item class="data-item">
-            <ion-label>
-              <h3>Apellidos</h3>
-              <p>{{ userInfo.apellidos || 'Sin apellidos' }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item>
+                        <label position="floating">Contraseña:</label>
+                        <ion-input type="password" name="password" required [(ngModel)]="usuario.password"></ion-input>
+                    </ion-item>
+                </ion-col>
 
-      <ion-row>
-        <ion-col size="6">
-          <ion-item class="data-item">
-            <ion-label>
-              <h3>Email</h3>
-              <p>{{ userInfo.email || 'Sin email' }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-col>
+                <ion-col size="6">
+                    <ion-item>
+                        <label position="floating">Confirmación de contraseña:</label>
+                        <ion-input type="password" name="confirmPassword" required
+                            [(ngModel)]="usuario.confirmPassword"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-        <ion-col size="6">
-          <ion-item class="data-item">
-            <ion-label>
-              <h3>Género</h3>
-              <p>{{ userInfo.nombre_genero || 'Sin género' }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item>
+                        <label position="floating">Nombre:</label>
+                        <ion-input type="text" name="nombre" required [(ngModel)]="usuario.nombre"></ion-input>
+                    </ion-item>
+                </ion-col>
 
-      <ion-row>
-        <ion-col size="6">
-          <ion-item class="data-item">
-            <ion-label>
-              <h3>Fecha de Nacimiento</h3>
-              <p>{{ userInfo.fecha_nacimiento || 'Sin fecha de nacimiento' }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-col>
+                <ion-col size="6">
+                    <ion-item>
+                        <label position="floating">Apellidos:</label>
+                        <ion-input type="text" name="apellidos" required [(ngModel)]="usuario.apellidos"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
-        <ion-col size="6">
-          <ion-item class="data-item">
-            <ion-label>
-              <h3>Teléfono</h3>
-              <p>{{ userInfo.numero_telefono || 'Sin número de teléfono' }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+            <ion-item>
+                <label position="floating">Fecha de nacimiento:</label>
+                <ion-input type="date" name="fechaNacimiento" [(ngModel)]="usuario.fecha_nacimiento"></ion-input>
+            </ion-item>
 
-      <ion-row>
-        <ion-col size="12">
-          <ion-item class="data-item">
-            <ion-label>
-              <h3>Rol</h3>
-              <p>{{ userInfo.nombre_rol || 'Sin rol' }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+            <ion-item>
+                <label>Género:</label>
+                <ion-select name="genero" placeholder="Seleccione" [(ngModel)]="usuario.genero_id">
+                    <ion-select-option *ngFor="let genero of generos" [value]="genero.genero_id">{{ genero.nombre
+                        }}</ion-select-option>
+                </ion-select>
+            </ion-item>
 
-  </ion-card>
+            <ion-item>
+                <label position="floating">Número de teléfono:</label>
+                <ion-input type="tel" name="numeroTelefono" [(ngModel)]="usuario.numero_telefono"></ion-input>
+            </ion-item>
 
+            <ion-button expand="full" type="submit" [disabled]="!registroForm.valid">Registrarse</ion-button>
+        </form>
+    </ion-card>
 </ion-content>

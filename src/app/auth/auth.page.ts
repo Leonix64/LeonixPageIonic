@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { ToastController } from '@ionic/angular';
 import { RegistroService, Usuario } from '../services/registro.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-auth',
@@ -11,10 +11,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AuthPage implements OnInit {
 
-  loginCardVisible = false;
-  registerCardVisible = false;
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
 
-  // Propiedades del usuario
+  mostrarLogin = false;
+  mostrarRegister = false;
+
   usuario: Usuario = {
     username: '',
     email: '',
@@ -24,23 +25,23 @@ export class AuthPage implements OnInit {
     apellidos: '',
     fecha_nacimiento: '',
     genero_id: 10,
-    numero_telefono: ''
+    numero_telefono: '',
   };
 
-  // Variables para almacenar 
+  // Variables para almacenar
   token = '';
   rol = '';
   generos: any[] = [];
 
   constructor(
-    private registroService: RegistroService,
-    private loginService: LoginService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private toastController: ToastController,
+    private registerService: RegistroService,
+    private loginService: LoginService,
   ) { }
 
   ngOnInit() {
-    this.obtenerGeneros();
+    this.getGeneros();
   }
 
   IniciarSesion() {
@@ -48,72 +49,71 @@ export class AuthPage implements OnInit {
       (response) => {
         this.token = response.token;
         this.loginService.setToken(this.token);
-        console.log('Token de Usuario:', this.token);
+        // console.log('Token: ' + this.token);
 
         this.router.navigate(['/home']);
-        this.showSnackBar('Inicio de sesión exitoso', 'success');
+
+        this.presentToast('Inicio de Sesión exitoso');
       },
       (error) => {
-        this.showSnackBar('Error de inicio de sesión', 'error');
-        console.error('Error de inicio de sesión', error);
+        this.presentErrorToast('Error al ingresar los datos, inténtelo de nuevo.');
       }
     );
   }
 
-  onSubmit() {
+  Registro() {
     if (this.usuario.password !== this.usuario.confirmPassword) {
-      this.showSnackBar('Las contraseñas no coinciden', 'error');
+      this.presentErrorToast('Las contraseñas no coinciden');
       return;
     }
-  
-    this.registroService.registroUsuario(this.usuario).subscribe(
+
+    this.registerService.registroUsuario(this.usuario).subscribe(
       () => {
-        // Registro exitoso
-        this.showSnackBar('Usuario registrado', 'success');
+        this.presentToast('Usuario registrado con éxito');
       },
       (error) => {
-        // Error al registrar el usuario
-        console.error('Error al registrar el usuario:', error);
-        this.showSnackBar('Error al registrar el usuario. Por favor, inténtelo de nuevo más tarde.', 'error');
+        this.presentErrorToast('Error al registrar el usuario. Por favor, intente de nuevo');
       }
     );
   }
 
-  obtenerGeneros() {
-    this.registroService.getGeneroByToken().subscribe(
+  getGeneros() {
+    this.registerService.getGeneroByToken().subscribe(
       (data) => {
         this.generos = data;
       },
       (error) => {
-        console.error('Error al obtener la lista de géneros:', error);
+        // console.log('Error al obtener lista de géneros', error);
       }
     );
   }
 
-  toggleCardLogin() {
-    if (this.registerCardVisible) {
-      this.registerCardVisible = false;
-    }
-    this.loginCardVisible = !this.loginCardVisible;
+  // BOTONES
+  toggleLogin() {
+    this.mostrarLogin = !this.mostrarLogin;
   }
 
-  toggleCardRegister() {
-    if (this.loginCardVisible) {
-      this.loginCardVisible = false;
-    }
-    this.registerCardVisible = !this.registerCardVisible;
+  toggleRegister() {
+    this.mostrarRegister = !this.mostrarRegister;
   }
 
-  /*onSubmitTest(type: string) {
-    console.log(`Formulario ${type} enviado`);
-  }*/
-
-  private showSnackBar(message: string, type: 'success' | 'error') {
-    const panelClass = type === 'success' ? ['success-snackbar'] : ['error-snackbar'];
-
-    this.snackBar.open(message, 'Cerrar', {
+  private async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
       duration: 3000,
-      panelClass: panelClass,
+      position: 'bottom',
     });
+    toast.present();
   }
+
+  private async presentErrorToast(message: string) {
+    const toastError = await this.toastController.create({
+      message,
+      duration: 3000,
+      position: 'bottom',
+      color: 'danger',
+    });
+    toastError.present();
+  }
+
 }
