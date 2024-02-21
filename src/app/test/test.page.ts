@@ -1,8 +1,7 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-import { RegistroService, Usuario } from '../services/registro.service';
-import { LoginService } from '../services/login.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { CvService } from '../services/cv.service';
+import { ChangeDetectorRef } from '@angular/core';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-test',
@@ -11,109 +10,77 @@ import { LoginService } from '../services/login.service';
 })
 export class TestPage implements OnInit {
 
-  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
-
-  mostrarLogin = false;
-  mostrarRegister = false;
-
-  usuario: Usuario = {
-    username: '',
+  cvData: any = {
+    image: '',
+    about_me: '',
+    work_xp: '',
+    skills: '',
+    education: '',
+    address: '',
+    phone: '',
     email: '',
-    password: '',
-    confirmPassword: '',
-    nombre: '',
-    apellidos: '',
-    fecha_nacimiento: '',
-    genero_id: 10,
-    numero_telefono: '',
   };
 
-  // Variables para almacenar
-  token = '';
-  rol = '';
-  generos: any[] = [];
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
+  base64Image: string | null = null;
+  selectedImageURL: string | ArrayBuffer | null = null;
 
   constructor(
-    private router: Router,
-    private toastController: ToastController,
-    private registerService: RegistroService,
-    private loginService: LoginService,
+    private cvService: CvService,
+    private cdr: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
-    this.getGeneros();
+    //this.mostrarCV();
   }
 
-  IniciarSesion() {
-    this.loginService.login(this.usuario).subscribe(
+  cargarCV() {
+    const token = localStorage.getItem('authToken') || '';
+
+    this.cvService.postCVData(this.cvData, token).subscribe(
       (response) => {
-        this.token = response.token;
-        this.loginService.setToken(this.token);
-        // console.log('Token: ' + this.token);
-
-        this.router.navigate(['/home']);
-
-        this.presentToast('Inicio de Sesión exitoso');
+        console.log('CV cargado con éxito', response);
       },
-      (error) => {
-        this.presentErrorToast('Error al ingresar los datos, inténtelo de nuevo.');
+      (err) => {
+        console.error(err);
       }
     );
   }
 
-  Registro() {
-    if (this.usuario.password !== this.usuario.confirmPassword) {
-      this.presentErrorToast('Las contraseñas no coinciden');
-      return;
+  actualizarCV() {
+    const token = localStorage.getItem('authToken') || '';
+
+    this.cvService.updateCVData(this.cvData, token).subscribe(
+      (response) => {
+        console.log('CV actualizado con éxito', response);
+      },
+      (err) => {
+        console.error(err);
+      }
+    )
+  }
+
+  openFileInput() {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: any): void {
+    console.log('File Selected', event.target.files[0]);
+    const files: FileList | null = event.target.files;
+    if (files && files.length > 0) {
+      const selectedFile: File = files[0];
+      this.selectedImageURL = URL.createObjectURL(selectedFile);
+      this.convertToBase64(selectedFile);
     }
-
-    this.registerService.registroUsuario(this.usuario).subscribe(
-      () => {
-        this.presentToast('Usuario registrado con éxito');
-      },
-      (error) => {
-        this.presentErrorToast('Error al registrar el usuario. Por favor, intente de nuevo');
-      }
-    );
   }
 
-  getGeneros() {
-    this.registerService.getGeneroByToken().subscribe(
-      (data) => {
-        this.generos = data;
-      },
-      (error) => {
-        // console.log('Error al obtener lista de géneros', error);
-      }
-    );
+  convertToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.base64Image = (reader.result as string).split(',')[1];
+      this.cvData.image = this.base64Image;
+      console.log('Imagen en base64', this.base64Image);
+    };
+    reader.readAsDataURL(file);
   }
-
-  // BOTONES
-  toggleLogin() {
-    this.mostrarLogin = !this.mostrarLogin;
-  }
-
-  toggleRegister() {
-    this.mostrarRegister = !this.mostrarRegister;
-  }
-
-  private async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 3000,
-      position: 'bottom',
-    });
-    toast.present();
-  }
-
-  private async presentErrorToast(message: string) {
-    const toastError = await this.toastController.create({
-      message,
-      duration: 3000,
-      position: 'bottom',
-      color: 'danger',
-    });
-    toastError.present();
-  }
-
 }

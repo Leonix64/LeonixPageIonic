@@ -1,103 +1,31 @@
-<ion-content [fullscreen]="true" class="ion-padding">
-    <ion-card class="header">
-        <ion-title class="ion-text-center">Login & Register</ion-title>
-    </ion-card>
-
-    <ion-card class="auth">
-        
-        <ion-buttons>
-            <ion-button class="auth-button" (click)="toggleLogin()">Login</ion-button>
-            <ion-button class="auth-button" (click)="toggleRegister()">Register</ion-button>
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home" text="Volver"></ion-back-button>
         </ion-buttons>
-    </ion-card>
+        <ion-title>Curriculum Vitae Form</ion-title>
+    </ion-toolbar>
+</ion-header>
 
-    <!-- LOGIN -->
-    <ion-card *ngIf="mostrarLogin" class="login">
-        <ion-title>Login - Próximamente</ion-title>
+<ion-content [fullscreen]="true">
+    <ion-title class="titles">Imagen</ion-title>
+        <ion-row>
+            <ion-col size="6">
 
-        <form (ngSubmit)="IniciarSesion()">
-            <ion-item>
-                <ion-label position="floating">Nombre de usuario</ion-label>
-                <ion-input type="text" name="username" required [(ngModel)]="usuario.username"></ion-input>
-            </ion-item>
+                <div class="preview">
+                    <div class="image" *ngIf="selectedImageURL || !selectedImageURL">
+                        <img [src]="selectedImageURL || 'https://w.wallhaven.cc/full/6q/wallhaven-6qo2ml.png'" alt="Selected Image">
+                    </div>
+                </div>
 
-            <ion-item>
-                <ion-label position="floating">Contraseña</ion-label>
-                <ion-input type="password" name="password" required [(ngModel)]="usuario.password"></ion-input>
-            </ion-item>
+                <div class="profile">
+                    <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" class="input-hidden">
+                    <ion-button (click)="openFileInput()">Buscar Imagen</ion-button>
+                </div>
+            </ion-col>
 
-            <ion-button expand="full" type="submit" class="submit-button">Enviar</ion-button>
-        </form>
-    </ion-card>
-
-    <!-- REGISTRO -->
-    <ion-card *ngIf="mostrarRegister" class="register">
-        <ion-title>Register - Próximamente</ion-title>
-
-        <form (ngSubmit)="Registro()" #registroForm="ngForm">
-
-            <ion-item>
-                <ion-label position="floating">Nombre de usuario:</ion-label>
-                <ion-input type="text" name="username" required [(ngModel)]="usuario.username"></ion-input>
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating">Correo electrónico:</ion-label>
-                <ion-input type="email" name="email" required [(ngModel)]="usuario.email"></ion-input>
-            </ion-item>
-
-            <ion-row>
-                <ion-col size="6">
-                    <ion-item>
-                        <label position="floating">Contraseña:</label>
-                        <ion-input type="password" name="password" required [(ngModel)]="usuario.password"></ion-input>
-                    </ion-item>
-                </ion-col>
-
-                <ion-col size="6">
-                    <ion-item>
-                        <label position="floating">Confirmación de contraseña:</label>
-                        <ion-input type="password" name="confirmPassword" required
-                            [(ngModel)]="usuario.confirmPassword"></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <ion-col size="6">
-                    <ion-item>
-                        <label position="floating">Nombre:</label>
-                        <ion-input type="text" name="nombre" required [(ngModel)]="usuario.nombre"></ion-input>
-                    </ion-item>
-                </ion-col>
-
-                <ion-col size="6">
-                    <ion-item>
-                        <label position="floating">Apellidos:</label>
-                        <ion-input type="text" name="apellidos" required [(ngModel)]="usuario.apellidos"></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-
-            <ion-item>
-                <label position="floating">Fecha de nacimiento:</label>
-                <ion-input type="date" name="fechaNacimiento" [(ngModel)]="usuario.fecha_nacimiento"></ion-input>
-            </ion-item>
-
-            <ion-item>
-                <label>Género:</label>
-                <ion-select name="genero" placeholder="Seleccione" [(ngModel)]="usuario.genero_id">
-                    <ion-select-option *ngFor="let genero of generos" [value]="genero.genero_id">{{ genero.nombre
-                        }}</ion-select-option>
-                </ion-select>
-            </ion-item>
-
-            <ion-item>
-                <label position="floating">Número de teléfono:</label>
-                <ion-input type="tel" name="numeroTelefono" [(ngModel)]="usuario.numero_telefono"></ion-input>
-            </ion-item>
-
-            <ion-button expand="full" type="submit" [disabled]="!registroForm.valid">Registrarse</ion-button>
-        </form>
-    </ion-card>
+            <ion-col size="6">
+                <ion-title>Acerca de mí</ion-title>
+            </ion-col>
+        </ion-row>
 </ion-content>
