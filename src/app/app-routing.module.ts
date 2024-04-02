@@ -21,23 +21,12 @@ const routes: Routes = [
     loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
   },
   {
-    path: 'test',
-    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
-  },
-  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
-  },
-  {
-    path: 'cv',
-    loadChildren: () => import('./cv/cv.module').then( m => m.CvPageModule)
-  },
-  {
-    path: 'cv-form',
-    loadChildren: () => import('./cv-form/cv-form.module').then( m => m.CvFormPageModule)
-  },
-
-
+  },  {
+    path: 'test',
+    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
+  }
 
 ];
 
