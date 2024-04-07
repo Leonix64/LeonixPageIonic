@@ -14,9 +14,10 @@
       <p class="nickname">(Leonix)</p>
     </div>
   </div>
-  
+
+  <!-- Reloj -->
   <div class="reloj">
-    <h2>Fecha y Hora</h2>
+    <!-- <h2>Fecha y Hora</h2> -->
     <p>{{ currentDateTime | date: 'dd/MM/yyyy - hh:mm:ss a' }}</p>
   </div> 
 
@@ -30,13 +31,18 @@
         <div class="info-content">
           <p class="role">Desarrollador de Software</p>
           <p class="bio">Me gradué en Ingeniería en Software, donde inicialmente me familiaricé con Java antes de adentrarme en el emocionante mundo del desarrollo web y móvil. Este último campo capturó mi interés y me llevó a utilizar diversas herramientas y frameworks para crear soluciones innovadoras.</p>
-          <p class="additional-skills">Además, completé una carrera técnica en Soporte y Mantenimiento de Equipos de Cómputo. Gracias a esta formación, poseo habilidades sólidas en diversas áreas, incluyendo:</p>
+          <p class="bio">Además, completé una carrera técnica en Soporte y Mantenimiento de Equipos de Cómputo. Gracias a esta formación, poseo habilidades sólidas en diversas áreas.</p>
+          <p class="additional-skills">Desde que comencé en el mundo de la programación, he hecho trabajos en línea y he colaborado con gente en proyectos digitales tanto para empresas como para usuarios finales. Estoy bastante seguro de mi forma de trabajar y soy muy curioso, siempre buscando mejorar mis habilidades.</p>
 
           <ul class="skills-list">
-            <li>Realización de limpiezas para garantizar un funcionamiento óptimo.</li>
-            <li>Organización y tendido de cables de red Ethernet para una conectividad eficiente.</li>
-            <li>Formateo de unidades, tanto en niveles básicos como en entornos más especializados, incluso con procedimientos similares a los estándares militares.</li>
-            <li>Y más...</li>
+            <li>Html</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>TypeScript</li>
+            <li>Python</li>
+            <li>NodeJs</li>
+            <li>Ionic</li>
+            <li>Angular</li>
           </ul>
         </div>
       </ion-col>
@@ -86,22 +92,40 @@
         </div>
       </ion-col>
     </ion-row>
+  </ion-card>
 
-    <!-- Carrusel -->
-    <ion-title>PORTAFOLIO</ion-title>
-
-    <ion-card class="carousel">
-      <div class="carousel-inner">
-        <img *ngIf="currentImage" [src]="currentImage" alt="Carousel Image">
+  <!-- Trayectoria -->
+  <ion-card class="path">
+    <div class="roles-container">
+      <div class="role designer">
+        <ion-icon name="construct-outline"></ion-icon>
+        <h3>Designer</h3>
+        <p>I value simple content structure, clean design patterns, and thoughtful interactions.</p>
       </div>
-    
-      <ion-buttons>
-        <ion-button (click)="prevImage()">Anterior</ion-button>
-        <ion-button (click)="nextImage()">Siguiente</ion-button>
-      </ion-buttons>
-    </ion-card>
-    <br>
+      <div class="role frontend">
+        <ion-icon name="code-slash-outline"></ion-icon>
+        <h3>Frontend Developer</h3>
+        <p>I like to code things from scratch, and enjoy bringing ideas to life in the browser.</p>
+      </div>
+      <div class="role mentor">
+        <ion-icon name="school-outline"></ion-icon>
+        <h3>Mentor</h3>
+        <p>I genuinely care about people, and enjoy helping them work on their craft.</p>
+      </div>
+    </div>
+  </ion-card>
+  
 
+  <!-- Portafolio -->
+  <ion-card class="project-container">
+    <section class="landing-page">
+      <div class="background-image"></div>
+      <div class="content-wrapper">
+        <h1>Bienvenido a mi Portafolio</h1>
+        <p>Descubre mis proyectos y habilidades.</p>
+        <a href="/portafolio" class="cta-button">Ver Portafolio</a>
+      </div>
+    </section>
   </ion-card>
 
   <!-- Footer -->

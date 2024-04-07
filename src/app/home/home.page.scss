@@ -1,13 +1,5 @@
-$background-url: url(https://w.wallhaven.cc/full/yj/wallhaven-yjmxgx.jpg);
-$avatar-size: 250px;
-$avatar-border-width: 5px;
-$avatar-hover-scale: 1.1;
-$animation-duration: 1.5s;
-$animation-delay: 0.5s;
-
 ion-content {
-  --background: #{$background-url} center/cover no-repeat fixed;
-  // Ocultar scroll
+  --background: url("../../assets/BackgroundPage.jpg") center/cover no-repeat fixed;
   --offset-bottom: auto!important;
   --overflow: hidden;
   overflow: auto;
@@ -16,9 +8,10 @@ ion-content {
   }
   background: var(--background);
   opacity: 0;
-  animation: fadeIn #{$animation-duration} ease-in-out #{$animation-delay} forwards;
+  animation: fadeIn 1.5s ease-in-out 0.5s forwards;
 }
 
+// Perfil
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -29,10 +22,9 @@ ion-content {
   .avatar {
     position: relative;
     overflow: hidden;
-    width: $avatar-size;
-    height: $avatar-size;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
-    //border: $avatar-border-width solid #fff;
     transform: scale(0);
     transition: transform 0.8s ease-in-out;
 
@@ -52,7 +44,7 @@ ion-content {
     }
 
     &:hover {
-      transform: scale($avatar-hover-scale);
+      transform: scale(1.1);
 
       .base-image {
         opacity: 0;
@@ -63,7 +55,7 @@ ion-content {
       }
     }
 
-    animation: slideInFromTop $animation-duration ease-in-out #{$animation-delay + 0.3s} forwards;
+    animation: slideInFromTop 1.5s ease-in-out 0.8s forwards;
   }
 
   .name {
@@ -117,11 +109,11 @@ ion-content {
       opacity: 1;
     }
 
-    animation: slideInFromTop $animation-duration ease-in-out #{$animation-delay + 0.7s} forwards;
+    animation: slideInFromTop 1.5s ease-in-out 1.2s forwards;
   }
 }
 
-// Keyframes //
+// Keyframes del perfil
 @keyframes fadeIn {
   to {
     opacity: 1;
@@ -140,27 +132,42 @@ ion-content {
   }
 }
 
-// Tarjeta de información //
+// Reloj
+.reloj {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
-// Colores
-$background-color: #00000060;
-$box-shadow-color: white;
-$hover-filter-color: saturate(150%);
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
 
-// Tamaños
-$border-radius: 15px;
-$box-shadow: 0 0 10px $box-shadow-color;
-$img-size: 50px;
+  p {
+    background-color: #333;
+    color: white;
+    display: inline;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
 
-// Transiciones
-$transition-speed: 0.3s;
-$transition-easing: ease-in-out;
+  @media screen and (max-width: 768px) {
+    .linea-blanca {
+      width: 50%;
+    }
+  }
+}
 
-// Primer columna
+// Tarjeta de información
 .info-container {
-  background-color: $background-color;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
+  background-color: #00000060;
+  border-radius: 15px;
+  box-shadow: 0 0 10px white;
 
   .info-content {
     padding: 20px;
@@ -196,7 +203,7 @@ $transition-easing: ease-in-out;
     margin-top: 20px;
   }
 
-  // Segunda columna //
+  // Habilidades técnicas
   .skills-container {
     display: flex;
     flex-direction: column;
@@ -209,16 +216,16 @@ $transition-easing: ease-in-out;
     }
 
     img {
-      width: $img-size;
-      height: $img-size;
+      width: 50px;
+      height: 50px;
       margin: 10px;
-      transition: transform $transition-speed $transition-easing, filter $transition-speed $transition-easing;
+      transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
       cursor: pointer;
       filter: blur(0.5px) saturate(90%);
 
       &:hover {
         transform: scale(1.2);
-        filter: blur(0px) $hover-filter-color;
+        filter: blur(0px) saturate(150%);
       }
     }
   }
@@ -232,56 +239,149 @@ $transition-easing: ease-in-out;
   }
 }
 
-// Reloj //
-.reloj {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+// Trayectoria
+.path {
+  background-color: #00000060;
+  box-shadow: 0 0 10px white;
+  border-radius: 15px;
+  padding: 20px;
 
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
+  .roles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
-  p {
-    background-color: #333;
-    color: white;
-    display: inline;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-  }
+    .role {
+      position: relative;
+      width: calc(33% - 20px);
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #333;
+      color: #fff;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.3s ease;
 
-  @media screen and (max-width: 768px) {
-    .linea-blanca {
-      width: 50%;
+      ion-icon {
+        font-size: 32px;
+        color: #00ff9b;
+      }
+
+      h3 {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      p {
+        margin-top: 10px;
+        color: #ccc;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.2);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+
+        &:after {
+          opacity: 1;
+        }
+      }
     }
   }
 }
 
-// Footer //
+@media (max-width: 768px) {
+  .path .roles-container .role {
+    width: calc(50% - 20px);
+  }
+}
 
-// Colores
-$footer-bg-color: #00000060;
-$box-shadow-color: white;
+@media (max-width: 480px) {
+  .path .roles-container .role {
+    width: calc(100% - 20px);
+  }
+}
 
-// Tamaños
-$footer-padding: 20px;
-$footer-margin-top: 20px;
-$icon-size: 40px;
-$icon-hover-scale: 1.2;
-$icon-hover-saturation: 150%;
+// Portafolio
+.project-container {
+  background-color: #00000060;
+  box-shadow: 0 0 10px white;
+  border-radius: 15px;
 
+  .landing-page {
+    position: relative;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('../../assets/backgrooundSection.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.7);
+      z-index: -1;
+    }
+
+    .content-wrapper {
+      max-width: 800px;
+      padding: 0 20px;
+
+      h1 {
+        font-size: 30px;
+        padding: 0 20px;
+      }
+
+      p {
+        font-size: 15px;
+        margin-bottom: 40px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 5px;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+}
+
+// Footer
 .footer {
-  background-color: $footer-bg-color;
-  box-shadow: 0 0 10px $box-shadow-color;
-  padding: $footer-padding;
+  background-color: #00000060;
+  box-shadow: 0 0 10px white;
+  padding: 20px;
   text-align: center;
-  margin-top: $footer-margin-top;
+  margin-top: 20px;
 
   .footer-content {
     color: white;
@@ -295,8 +395,8 @@ $icon-hover-saturation: 150%;
       font-size: 14px;
 
       .social-button {
-        width: $icon-size;
-        height: $icon-size;
+        width: 40px;
+        height: 40px;
         margin: 0 5px;
         background-size: cover;
         display: inline-block;
@@ -304,14 +404,14 @@ $icon-hover-saturation: 150%;
         transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 
         &:hover {
-          transform: scale($icon-hover-scale);
-          filter: saturate($icon-hover-saturation);
+          transform: scale(1.2);
+          filter: saturate(150%);
         }
       }
 
       // Backgrounds for each social network
       .facebook {
-        background-image: url(https://cdn2.iconfinder.com/data/icons/social-aquiocons/512/Aquicon-Facebook.png);
+        background-image: url(https://cdn1.iconfinder.com/data/icons/logotypes/32/facebook-512.png);
       }
 
       .twitter {
@@ -323,67 +423,16 @@ $icon-hover-saturation: 150%;
       }
 
       .discord {
-        background-image: url(https://cdn0.iconfinder.com/data/icons/social-media-2473/128/discord_message_interaction_logo_communication-512.png);
+        background-image: url(https://cdn3.iconfinder.com/data/icons/social-network-flat-3/100/Discord-512.png);
       }
 
       .github {
-        background-image: url(https://cdn2.iconfinder.com/data/icons/social-aquiocons/512/Aquicon-Github.png);
+        background-image: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-social-github-512.png);
       }
 
       .steam {
         background-image: url(https://cdn2.iconfinder.com/data/icons/gaming-platforms-logo-shapes/250/steam_logo-512.png);
       }
-    }
-  }
-}
-
-// Carrusel //
-.carousel {
-  background: gray;
-  width: 80%;
-  margin: 0 auto;
-  padding: 10px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  .carousel-inner {
-    height: 420px;
-    overflow: hidden;
-    border-radius: 15px;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 15px;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-  }
-
-  ion-buttons {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 0 0 15px 15px;
-    border-top: 1px solid #ddd;
-  }
-
-  ion-button {
-    flex: 1;
-    margin: 0 5px;
-    --background: #f5f5f5;
-    color: #2f2f2f;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-
-    .carousel-inner {
-      height: 300px;
     }
   }
 }

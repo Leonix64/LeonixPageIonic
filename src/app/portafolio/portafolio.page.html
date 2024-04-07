@@ -1,0 +1,16 @@
+<ion-content [fullscreen]="true">
+  <div class="portfolio-container">
+    <div class="portfolio-item" *ngFor="let project of projects">
+      <div class="portfolio-item-image">
+        <img [src]="project.imageUrl" alt="{{ project.title }}">
+        <div class="portfolio-item-description">
+          <p>{{ project.description }}</p>
+        </div>
+      </div>
+      <div class="portfolio-item-content">
+        <h3>{{ project.title }}</h3>
+        <p>Developed with: {{ project.language }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
