@@ -1,5 +1,4 @@
 <ion-content [fullscreen]="true" class="no-scroll">
-
   <!-- Perfil -->
   <div class="profile-container">
     <div class="avatar-container">
@@ -17,13 +16,11 @@
 
   <!-- Reloj -->
   <div class="reloj">
-    <!-- <h2>Fecha y Hora</h2> -->
     <p>{{ currentDateTime | date: 'dd/MM/yyyy - hh:mm:ss a' }}</p>
-  </div> 
+  </div>
 
   <!-- Tarjeta de información -->
   <ion-card class="info-container">
-
     <ion-row>
       <!-- Acerca de mí -->
       <ion-col size-md="6" size-xs="12">
@@ -33,17 +30,6 @@
           <p class="bio">Me gradué en Ingeniería en Software, donde inicialmente me familiaricé con Java antes de adentrarme en el emocionante mundo del desarrollo web y móvil. Este último campo capturó mi interés y me llevó a utilizar diversas herramientas y frameworks para crear soluciones innovadoras.</p>
           <p class="bio">Además, completé una carrera técnica en Soporte y Mantenimiento de Equipos de Cómputo. Gracias a esta formación, poseo habilidades sólidas en diversas áreas.</p>
           <p class="additional-skills">Desde que comencé en el mundo de la programación, he hecho trabajos en línea y he colaborado con gente en proyectos digitales tanto para empresas como para usuarios finales. Estoy bastante seguro de mi forma de trabajar y soy muy curioso, siempre buscando mejorar mis habilidades.</p>
-
-          <ul class="skills-list">
-            <li>Html</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
-            <li>Python</li>
-            <li>NodeJs</li>
-            <li>Ionic</li>
-            <li>Angular</li>
-          </ul>
         </div>
       </ion-col>
 
@@ -65,7 +51,7 @@
             <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/mysql/mysql-original-wordmark.svg" alt="MySQL">
             <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/python/python-original.svg" alt="Python">
           </div>
-          
+
           <!-- Grupo 3 -->
           <div class="skill-group">
             <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/angularjs/angularjs-original.svg" alt="Angular">
@@ -96,34 +82,95 @@
 
   <!-- Trayectoria -->
   <ion-card class="path">
+    <h2>My Journey</h2>
     <div class="roles-container">
-      <div class="role designer">
-        <ion-icon name="construct-outline"></ion-icon>
-        <h3>Designer</h3>
-        <p>I value simple content structure, clean design patterns, and thoughtful interactions.</p>
+      <div class="role tech-expertise">
+        <ion-icon name="code-slash-outline"></ion-icon>
+        <h3>My Tech Expertise</h3>
+        <p>These are the technologies I'm most proficient in:</p>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>Python</li>
+          <li>Node.js</li>
+          <li>Ionic</li>
+          <li>Angular</li>
+        </ul>
       </div>
       <div class="role frontend">
-        <ion-icon name="code-slash-outline"></ion-icon>
+        <ion-icon name="browsers-outline"></ion-icon>
         <h3>Frontend Developer</h3>
-        <p>I like to code things from scratch, and enjoy bringing ideas to life in the browser.</p>
+        <p>I like to code things from scratch, and enjoy bringing ideas to life in the browser. I'm proficient in modern web technologies and constantly strive to stay up-to-date with the latest advancements.</p>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>React</li>
+        </ul>
+        <div class="dev-tools">
+          <h4>Dev Tools:</h4>
+          <ul>
+            <li>webpack</li>
+            <li>Git</li>
+            <li>VSCode</li>
+            <li>npm</li>
+          </ul>
+        </div>
       </div>
-      <div class="role mentor">
-        <ion-icon name="school-outline"></ion-icon>
-        <h3>Mentor</h3>
-        <p>I genuinely care about people, and enjoy helping them work on their craft.</p>
+      <div class="role backend">
+        <ion-icon name="server-outline"></ion-icon>
+        <h3>Backend Developer</h3>
+        <p>I genuinely care about people, and enjoy helping them work on their craft. I'm skilled in building robust and scalable backend systems that power modern web applications.</p>
+        <ul>
+          <li>Node.js</li>
+          <li>Express</li>
+          <li>MongoDB</li>
+          <li>SQL</li>
+        </ul>
+        <div class="dev-tools">
+          <h4>Dev Tools:</h4>
+          <ul>
+            <li>Postman</li>
+            <li>Git</li>
+            <li>AWS</li>
+            <li>Docker</li>
+          </ul>
+        </div>
       </div>
     </div>
   </ion-card>
-  
 
   <!-- Portafolio -->
   <ion-card class="project-container">
     <section class="landing-page">
       <div class="background-image"></div>
       <div class="content-wrapper">
-        <h1>Bienvenido a mi Portafolio</h1>
-        <p>Descubre mis proyectos y habilidades.</p>
-        <a href="/portafolio" class="cta-button">Ver Portafolio</a>
+        <h1>Welcome to my Portfolio</h1>
+        <p>These are some of the projects I've worked on.</p>
+      </div>
+      <div class="portfolio-container">
+        <div class="portfolio-item" *ngFor="let project of projects">
+          <div class="portfolio-item-image">
+            <img [src]="project.imageUrl" alt="{{ project.title }}">
+            <div class="portfolio-item-description">
+              <p>{{ project.description }}</p>
+            </div>
+          </div>
+          <div class="portfolio-item-content">
+            <h3>{{ project.title }}</h3>
+            <p>Developed with: {{ project.language }}</p>
+            <a [href]="project.demoUrl" class="demo-link" target="_blank">
+              <ion-icon name="open-outline"></ion-icon>
+              Live Demo
+            </a>
+            <a [href]="project.sourceUrl" class="source-link" target="_blank">
+              <ion-icon name="code-outline"></ion-icon>
+              View Source
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   </ion-card>
@@ -132,7 +179,6 @@
   <ion-card class="footer">
     <div class="footer-content">
       <p class="copyright">© 2023 Desarrollador Web | Angel Gonzalez. Todos los derechos reservados.</p>
-
       <div class="contact-info">
         <p>Contacto:</p>
         <a href="https://www.facebook.com/leonix6408" target="_blank" class="social-button facebook" title="Facebook"></a>

@@ -31,7 +31,11 @@ const routes: Routes = [
   {
     path: 'portafolio',
     loadChildren: () => import('./portafolio/portafolio.module').then( m => m.PortafolioPageModule)
+  },  {
+    path: 'index',
+    loadChildren: () => import('./index/index.module').then( m => m.IndexPageModule)
   }
+
 
 ];
 
