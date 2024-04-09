@@ -1,13 +1,224 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>index</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="no-scroll">
+  <!-- Perfil -->
+  <div class="profile-container">
+    <div class="avatar-container">
+      <div class="avatar">
+        <img src="../../assets/leonix/image1.png" alt="Avatar Image" class="base-image">
+        <img src="../../assets/leonix/image2.png" alt="Hover Image" class="hover-image">
+      </div>
+    </div>
+    <div class="name">
+      <p class="first-name">Angel</p>
+      <p class="last-name">Gonzalez Hernandez</p>
+      <p class="nickname">(Leonix)</p>
+    </div>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">index</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Reloj -->
+  <!-- <div class="reloj">
+    <p>{{ currentDateTime | date: 'dd/MM/yyyy - hh:mm:ss a' }}</p>
+  </div> -->
+
+  <!-- Tarjeta de información -->
+  <ion-card class="default-card-styles info-container">
+    <ion-row>
+      <!-- Acerca de mí -->
+      <ion-col size-md="6" size-xs="12">
+        <ion-title>ACERCA DE MÍ</ion-title>
+        <div class="info-content">
+          <p class="role">Desarrollador de Software</p>
+          <p class="bio">Me gradué en Ingeniería en Software, donde inicialmente me familiaricé con Java antes de adentrarme en el emocionante mundo del desarrollo web y móvil. Este último campo capturó mi interés y me llevó a utilizar diversas herramientas y frameworks para crear soluciones innovadoras.</p>
+          <p class="bio">Además, completé una carrera técnica en Soporte y Mantenimiento de Equipos de Cómputo. Gracias a esta formación, poseo habilidades sólidas en diversas áreas.</p>
+          <p class="additional-skills">Desde que comencé en el mundo de la programación, he hecho trabajos en línea y he colaborado con gente en proyectos digitales tanto para empresas como para usuarios finales. Estoy bastante seguro de mi forma de trabajar y soy muy curioso, siempre buscando mejorar mis habilidades.</p>
+        </div>
+      </ion-col>
+    
+      <!-- Habilidades técnicas -->
+      <ion-col size-md="6" size-xs="12">
+        <ion-title>HABILIDADES TÉCNICAS</ion-title>
+        <div class="skills-container">
+          <!-- Grupo 1 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/html5/html5-original.svg" alt="HTML">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/css3/css3-original.svg" alt="CSS">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/javascript/javascript-original.svg" alt="JavaScript">
+          </div>
+        
+          <!-- Grupo 2 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/typescript/typescript-original.svg" alt="TypeScript">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/php/php-original.svg" alt="PHP">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/mysql/mysql-original-wordmark.svg" alt="MySQL">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/python/python-original.svg" alt="Python">
+          </div>
+        
+          <!-- Grupo 3 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/angularjs/angularjs-original.svg" alt="Angular">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/nodejs/nodejs-original.svg" alt="NodeJs">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/arduino/arduino-original.svg" alt="Arduino">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/flutter/flutter-original.svg" alt="Flutter">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/laravel/laravel-plain.svg" alt="Laravel">
+          </div>
+        
+          <!-- Grupo 4 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/ionic/ionic-original.svg" alt="Ionic">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/java/java-original.svg" alt="Java">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/kotlin/kotlin-original.svg" alt="Kotlin">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/matlab/matlab-original.svg" alt="Matlab">
+          </div>
+        
+          <!-- Grupo 5 -->
+          <div class="skill-group">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/photoshop/photoshop-line.svg" alt="Photoshop">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/dart/dart-original.svg" alt="Dart">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/vscode/vscode-original.svg" alt="VS Code">
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <!-- Trayectoria -->
+  <ion-card class="default-card-styles path">
+    <h2>My Journey</h2>
+    <div class="roles-container">
+      <div class="role tech-expertise">
+        <ion-icon name="code-slash-outline"></ion-icon>
+        <h3>My Tech Expertise</h3>
+        <p>These are the technologies I'm most proficient in:</p>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>Python</li>
+          <li>Node.Js</li>
+          <li>Ionic</li>
+          <li>Angular</li>
+        </ul>
+        <p>Additionally, I have experience working with methodology:
+          <ul>
+            <li>Scrum</li>
+          </ul>
+      </div>
+      <div class="role frontend">
+        <ion-icon name="browsers-outline"></ion-icon>
+        <h3>Frontend Developer</h3>
+        <p>I like code things from scratch, and enjoy bringing ideas to life in the browser.</p>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>SCSS</li>
+          <li>JavaScript</li>
+          <li>React</li>
+        </ul>
+        <div class="dev-tools">
+          <h4>Dev Tools:</h4>
+          <ul>
+            <li>Git</li>
+            <li>VSCode</li>
+            <li>npm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role backend">
+        <ion-icon name="server-outline"></ion-icon>
+        <h3>Backend Developer</h3>
+        <p>In relation to Frontend I also reinforce my knowledge in these technologies. </p>
+        <ul>
+          <li>Node.Js</li>
+          <li>Express</li>
+          <li>SQL</li>
+        </ul>
+        <div class="dev-tools">
+          <h4>Dev Tools:</h4>
+          <ul>
+            <li>Postman</li>
+            <li>Git</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <!-- Portafolio -->
+  <ion-card class="default-card-styles project-container">
+    <section class="landing-page">
+      <div class="background-image"></div>
+      <div class="content-wrapper">
+        <h1>Portfolio</h1>
+        <p>These are some of the projects I've worked on.</p>
+      </div>
+      <div class="portfolio-container">
+        <div class="portfolio-item" *ngFor="let project of projects">
+          <div class="portfolio-item-image">
+            <img [src]="project.imageUrl" alt="{{ project.title }}">
+            <div class="portfolio-item-description">
+              <p>{{ project.description }}</p>
+            </div>
+          </div>
+          <div class="portfolio-item-content">
+            <h3>{{ project.title }}</h3>
+            <p>Developed with: {{ project.language }}</p>
+            <div class="button-container">
+              <a [href]="project.demoUrl" class="demo-link">
+                <ion-icon name="open-outline"></ion-icon>
+                Live Demo
+              </a>
+              <a [href]="project.sourceUrl" class="source-link">
+                <ion-icon name="code-outline"></ion-icon>
+                View Source
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ion-card>
+
+  <!-- Footer -->
+  <ion-card class="default-card-styles footer">
+    <div class="footer-content">
+      <h1>Contact me:</h1>
+      <ion-row>
+        <ion-col size-md="6" size-xs="12" class="footer-left">
+          <div class="user-card">
+            <div class="profile-info">
+              <div class="avatar-img">
+                <img src="https://w.wallhaven.cc/full/qz/wallhaven-qzpm25.jpg" alt="User Avatar">
+              </div>
+              <div class="name-title">
+                <h2>Angel Gonzalez</h2>
+                <p>Software Engineer</p>
+              </div>
+            </div>
+            <div class="contact-me">
+              <div class="phone">
+                <ion-icon name="phone-portrait-outline"></ion-icon>
+                <span>+52 (618) 258 7863</span>
+              </div>
+              <div class="email">
+                <ion-icon name="mail-outline"></ion-icon>
+                <a href="mailto:angel.gonzalezh08@gmail.com">angel.gonzalezh08&#64;gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size-md="6" size-xs="12" class="footer-right">
+          <div class="contact-info">
+            
+            <a href="https://www.facebook.com/leonix6408" target="_blank" class="social-button facebook" title="Facebook"></a>
+            <a href="https://twitter.com/Leonix6408" target="_blank" class="social-button twitter" title="Twitter"></a>
+            <a href="https://www.instagram.com/leonix_64/" target="_blank" class="social-button instagram" title="Instagram"></a>
+            <a href="https://discord.gg/FW9Hxn8DAy" target="_blank" class="social-button discord" title="Discord: leonix64"></a>
+            <a href="https://github.com/Leonix64" target="_blank" class="social-button github" title="GitHub"></a>
+            <a href="https://steamcommunity.com/id/Leonix64/" target="_blank" class="social-button steam" title="Steam"></a>
+          </div>
+        </ion-col>
+      </ion-row>
+      <p class="copyright">© 2023 Desarrollador Web | Angel Gonzalez. Todos los derechos reservados.</p>
+    </div>
+  </ion-card>
 </ion-content>

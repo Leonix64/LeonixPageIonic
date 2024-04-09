@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'index',
     pathMatch: 'full'
   },
   {
@@ -31,7 +31,8 @@ const routes: Routes = [
   {
     path: 'portafolio',
     loadChildren: () => import('./portafolio/portafolio.module').then( m => m.PortafolioPageModule)
-  },  {
+  },
+  {
     path: 'index',
     loadChildren: () => import('./index/index.module').then( m => m.IndexPageModule)
   }
