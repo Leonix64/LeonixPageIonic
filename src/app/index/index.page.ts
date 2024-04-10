@@ -10,7 +10,7 @@ export class IndexPage implements OnInit, OnDestroy {
   projects = [
     {
       title: 'Lyra QR',
-      description: 'Este bot fue creado específicamente para integrarse en Discord y tiene una función destacada: la generación de códigos QR. Cuando un usuario ingresa un texto de su elección, el bot crea una imagen con un código QR.',
+      description: 'This bot was specifically created to integrate into Discord and has a standout feature: QR code generation. When a user inputs text of their choice, the bot creates an image with a QR code.',
       imageUrl: '../../assets/LyraQR.png',
       language: 'Python',
       demoUrl: 'https://example.com/project1',
@@ -18,21 +18,13 @@ export class IndexPage implements OnInit, OnDestroy {
     },
     {
       title: 'RainFlow',
-      description: 'IA para la generación de mapas: determinando la ubicación óptima para construir una presa según las condiciones climáticas que favorecen un mayor caudal de agua.',
-      imageUrl: '../../assets/BackgroundSection.jpg',
+      description: 'AI for map generation: determining the optimal location to build a dam based on weather conditions that favor increased water flow.',
+      imageUrl: '../../assets/MapaPresas.png',
       language: 'Python',
       demoUrl: 'https://example.com/project2',
       sourceUrl: 'https://github.com/Leonix64/RainFlow.git'
     },
-    {
-      title: 'Project 3',
-      description: 'Description for project 3.',
-      imageUrl: '../../assets/BackgroundPage.jpg',
-      language: 'Angular',
-      demoUrl: 'https://example.com/project3',
-      sourceUrl: 'https://github.com/example/project3'
-    },
-  ];
+  ];  
 
   currentDateTime: Date = new Date();
   private intervalId: any;
