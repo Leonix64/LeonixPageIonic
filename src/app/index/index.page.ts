@@ -24,6 +24,30 @@ export class IndexPage implements OnInit, OnDestroy {
       demoUrl: 'https://example.com/project2',
       sourceUrl: 'https://github.com/Leonix64/RainFlow.git'
     },
+    {
+      title: "Nieve de Garrafa",
+      description: "Promotional website for a mobile shaved ice vending business.",
+      imageUrl: "../../assets/NieveGarrafa.png",
+      language: "Ionic, Angular",
+      demoUrl: "https://example.com/project3",
+      sourceUrl: "https://github.com/Leonix64/NieveGarrafa"
+    },
+    {
+      title: "Gestor de Citas Psiquiátricas",
+      description: "Web application for managing appointments and tracking patients at a mental health clinic.",
+      imageUrl: "../../assets/GestorCitas.png",
+      language: "Ionic, Angular",
+      demoUrl: "https://example.com/project3",
+      sourceUrl: "https://github.com/Leonix64/SaludMental_Front.git"
+    },
+    {
+      title: "Generador de Contraseñas",
+      description: "Tool to generate secure passwords of variable length, calculate their entropy, estimate the time required to decrypt them by brute force, and provide security tips.",
+      imageUrl: "../../assets/Contrasena.png",
+      language: "Python",
+      demoUrl: "https://example.com/project3",
+      sourceUrl: "https://github.com/Leonix64/Password_Generator.git"
+    }
   ];  
 
   currentDateTime: Date = new Date();
