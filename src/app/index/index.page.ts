@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { GithubService } from '../services/github.service';
 
 @Component({
   selector: 'app-index',
@@ -48,16 +49,25 @@ export class IndexPage implements OnInit, OnDestroy {
       demoUrl: "https://example.com/project3",
       sourceUrl: "https://github.com/Leonix64/Password_Generator.git"
     }
-  ];  
+  ];
 
   currentDateTime: Date = new Date();
   private intervalId: any;
+  githubUsername = 'Leonix64';
+  avatarUrl = '';
 
-  constructor() {
+  constructor(private githubService: GithubService) {
     this.intervalId = setInterval(() => this.updateDateTime(), 1000);
   }
 
   ngOnInit() {
+    this.githubService.getAvatarUrl(this.githubUsername).then(
+      data => {
+        this.avatarUrl = data.avatar_url;
+      }
+    ).catch(err => {
+      console.log('Error al obtener la imagen de GitHub:', err);
+    })
   }
 
   ngOnDestroy() {

@@ -178,6 +178,10 @@
       </div>
     </section>
   </ion-card>
+  
+  <button hidden>
+    <a href="/files">Files</a>
+  </button>
 
   <!-- Footer -->
   <ion-card class="default-card-styles footer">
@@ -188,7 +192,7 @@
           <div class="user-card">
             <div class="profile-info">
               <div class="avatar-img">
-                <img src="https://w.wallhaven.cc/full/qz/wallhaven-qzpm25.jpg" alt="User Avatar">
+                <img [src]="avatarUrl" alt="User Avatar">
               </div>
               <div class="name-title">
                 <h2>Angel Gonzalez</h2>

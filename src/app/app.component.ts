@@ -32,7 +32,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.getUserInfo();
-    this.getUserImage();
+    //this.getUserImage();
   }
 
   getUserInfo(): void {

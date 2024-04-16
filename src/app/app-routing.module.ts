@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -14,30 +14,32 @@ const routes: Routes = [
   },
   {
     path: 'user-profile',
-    loadChildren: () => import('./user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+    loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfilePageModule)
   },
   {
     path: 'modal',
-    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+    loadChildren: () => import('./modal/modal.module').then(m => m.ModalPageModule)
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule)
   },
   {
     path: 'test',
-    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
+    loadChildren: () => import('./test/test.module').then(m => m.TestPageModule)
   },
   {
     path: 'portafolio',
-    loadChildren: () => import('./portafolio/portafolio.module').then( m => m.PortafolioPageModule)
+    loadChildren: () => import('./portafolio/portafolio.module').then(m => m.PortafolioPageModule)
   },
   {
     path: 'index',
-    loadChildren: () => import('./index/index.module').then( m => m.IndexPageModule)
+    loadChildren: () => import('./index/index.module').then(m => m.IndexPageModule)
+  },
+  {
+    path: 'files',
+    loadChildren: () => import('./files/files.module').then(m => m.FilesPageModule)
   }
-
-
 ];
 
 @NgModule({
