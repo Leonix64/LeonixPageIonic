@@ -35,10 +35,6 @@ const routes: Routes = [
   {
     path: 'index',
     loadChildren: () => import('./index/index.module').then(m => m.IndexPageModule)
-  },
-  {
-    path: 'files',
-    loadChildren: () => import('./files/files.module').then(m => m.FilesPageModule)
   }
 ];
 
