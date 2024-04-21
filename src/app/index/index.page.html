@@ -182,44 +182,44 @@
   <!-- Footer -->
   <ion-card class="default-card-styles footer">
     <div class="footer-content">
-      <ion-row>
-        <ion-col size-md="6" size-xs="12" class="footer-left">
-          <h1>Contact me:</h1>
-          <div class="user-card">
-            <div class="profile-info">
-              <div class="avatar-img">
-                <img [src]="avatarUrl" alt="User Avatar">
-              </div>
-              <div class="name-title">
-                <h2>Angel Gonzalez</h2>
-                <p>Software Engineer</p>
-              </div>
-            </div>
-            <div class="contact-me">
-              <p>Have any questions or interested in working with me? Feel free to get in touch:</p>
-              <div class="phone">
-                <ion-icon name="phone-portrait-outline"></ion-icon>
-                <span>+52 (618) coming soon</span>
-              </div>
-              <div class="email">
-                <ion-icon name="mail-outline"></ion-icon>
-                <a href="mailto:angel.gonzalezh08@gmail.com">angel.gonzalezh08&#64;gmail.com</a>
-              </div>
-            </div>
+  
+      <!-- Contact card -->
+      <h1>Contact me:</h1>
+      <div class="user-card">
+        <div class="profile-info">
+          <div class="avatar-img">
+            <img [src]="avatarUrl" alt="User Avatar">
           </div>
-        </ion-col>
-        <ion-col size-md="6" size-xs="12" class="footer-right">
-          <h2>Redes sociales y pasatiempos</h2>
-          <div class="contact-info">
-            <a href="https://www.facebook.com/leonix6408" target="_blank" class="social-button facebook" title="Facebook"></a>
-            <a href="https://twitter.com/Leonix6408" target="_blank" class="social-button twitter" title="Twitter"></a>
-            <a href="https://www.instagram.com/leonix_64/" target="_blank" class="social-button instagram" title="Instagram"></a>
-            <a href="https://discord.gg/FW9Hxn8DAy" target="_blank" class="social-button discord" title="Discord: leonix64"></a>
-            <a href="https://github.com/Leonix64" target="_blank" class="social-button github" title="GitHub"></a>
-            <a href="https://steamcommunity.com/id/Leonix64/" target="_blank" class="social-button steam" title="Steam"></a>
+          <div class="name-title">
+            <h2>Angel Gonzalez</h2>
+            <p>Software Engineer</p>
           </div>
-        </ion-col>
-      </ion-row>
+        </div>
+        <div class="contact-me">
+          <p>Have any questions or interested in working with me? Feel free to get in touch:</p>
+          <div class="phone">
+            <ion-icon name="phone-portrait-outline"></ion-icon>
+            <span>+52 (618) coming soon</span>
+          </div>
+          <div class="email">
+            <ion-icon name="mail-outline"></ion-icon>
+            <a href="mailto:angel.gonzalezh08@gmail.com">angel.gonzalezh08&#64;gmail.com</a>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Network icons -->
+      <h1>Social networks and hobbies</h1>
+      <div class="contact-info">
+        <div class="social-card" *ngFor="let social of socialLinks">
+          <a [href]="social.url" target="_blank" [title]="social.title">
+            <div [class]="'social-icon ' + social.icon"></div>
+            <div class="social-info">
+              <p>{{ social.description }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
       <p class="copyright">© 2023 Web Developer | Angel Gonzalez. All rights reserved.</p>
     </div>
   </ion-card>

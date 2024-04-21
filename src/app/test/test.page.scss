@@ -1,225 +1,207 @@
-
 // Footer
 .footer {
-    padding: 20px;
-    text-align: center;
-    margin-top: 20px;
-    background: #333;
-  
-    .footer-content {
-      color: white;
-  
-      h1 {
-        font-size: 30px;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      }
-  
-      .user-card {
-        margin: 0 auto;
-        text-align: center;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-        width: 400px;
-      
-        .profile-info {
-          display: flex;
-          align-items: center;
-          margin-bottom: 30px;
-      
-          .avatar-img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 30px;
-            transition: transform 0.3s ease-in-out;
-      
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-            }
-      
-            &:hover {
-              transform: scale(1.09);
-            }
-          }
-      
-          .name-title {
-            h2 {
-              font-size: 24px;
-              font-weight: 600;
-              margin-bottom: 5px;
-              color: #666;
-            }
-      
-            p {
-              font-size: 16px;
-              color: #666;
-            }
-          }
-        }
-      
-        .contact-me {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-      
-          p {
-            font-size: 14px;
-            line-height: 1.5;
-            color: #333;
-            margin-bottom: 10px;
-          }
-      
-          .phone,
-          .email {
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 15px;
-      
-            ion-icon {
-              margin-right: 15px;
-              color: #00b8d4;
-              font-size: 20px;
-            }
-      
-            a {
-              text-decoration: none;
-            }
-          }
-        }
-      }    
-  
-      .footer-left {
-        justify-content: center;
-        margin-bottom: 15px;
-      }
-  
-      .footer-right {
-        justify-content: center;
-        align-items: center;
-      }
-  
-      .contact-info {
-        margin: 0 auto;
-        text-align: center;
-        font-size: 14px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+
+  .footer-content {
+    color: white;
+
+    h1 {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    // Contact card
+    .user-card {
+      margin: 0 auto;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 400px;
+      margin-bottom: 3rem;
+
+      .profile-info {
         display: flex;
         align-items: center;
-      
-        .social-card {
-          width: 120px;
-          background-color: #fff;
-          border-radius: 8px;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-          margin: 10px; // Espacio entre las tarjetas
-          padding: 10px;
+        margin-bottom: 30px;
+
+        .avatar-img {
+          width: 110px;
+          height: 110px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 30px;
           transition: transform 0.3s ease-in-out;
-      
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
           &:hover {
-            transform: translateY(-5px); // Efecto de elevación al pasar el cursor
+            transform: scale(1.09);
           }
-      
-          .social-icon {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto;
-            background-size: cover;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-      
-            &:hover {
-              transform: scale(1.2);
-            }
-      
-            // Backgrounds para cada red social (deja estas reglas donde ya las tenías)
-            &.facebook {
-              background-image: url(https://cdn1.iconfinder.com/data/icons/logotypes/32/facebook-512.png);
-            }
-      
-            &.twitter {
-              background-image: url(https://cdn2.iconfinder.com/data/icons/threads-by-instagram/24/x-logo-twitter-new-brand-512.png);
-            }
-      
-            &.instagram {
-              background-image: url(https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Instagram-512.png);
-            }
-      
-            &.discord {
-              background-image: url(https://cdn3.iconfinder.com/data/icons/social-network-flat-3/100/Discord-512.png);
-            }
-      
-            &.github {
-              background-image: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-social-github-512.png);
-            }
-      
-            &.steam {
-              background-image: url(https://cdn2.iconfinder.com/data/icons/gaming-platforms-logo-shapes/250/steam_logo-512.png);
-            }
-            
-            &.youtube {
-              background-image: url(https://cdn1.iconfinder.com/data/icons/logotypes/32/youtube-512.png);
-            }
+        }
+
+        .name-title {
+          h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #666;
           }
-      
-          .social-info {
-            p {
-              font-size: 12px;
-              color: #666;
-              margin-top: 5px;
-            }
+
+          p {
+            font-size: 16px;
+            color: #666;
+          }
+        }
+      }
+
+      .contact-me {
+        p {
+          font-size: 14px;
+          line-height: 1.5;
+          color: #333;
+          margin-bottom: 10px;
+        }
+
+        .phone,
+        .email {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          color: #666;
+          margin-bottom: 15px;
+
+          ion-icon {
+            margin-right: 15px;
+            color: #00b8d4;
+            font-size: 20px;
+          }
+
+          a {
+            text-decoration: none;
           }
         }
       }
     }
-      
-  
-    @media (max-width: 480px) {
-      .footer-content {
-        .user-card {
-          width: 100%;
-          padding: 15px;
-  
-          .profile-info {
-            .avatar-img {
-              width: 80px;
-              height: 80px;
-              margin-right: 20px;
-            }
-  
-            .name-title {
-              h2 {
-                font-size: 20px;
-              }
-  
-              p {
-                font-size: 14px;
-              }
-            }
+
+    // Network icons
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+
+      .social-card {
+        width: 120px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 10px;
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        a {
+          display: block;
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .social-icon {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto;
+          background-size: cover;
+          cursor: pointer;
+          transition: transform 0.3s ease-in-out;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+
+          // Background for each social network
+          &.facebook {
+            background-image: url(https://cdn1.iconfinder.com/data/icons/logotypes/32/facebook-512.png);
+          }
+
+          &.twitter {
+            background-image: url(https://cdn2.iconfinder.com/data/icons/threads-by-instagram/24/x-logo-twitter-new-brand-512.png);
+          }
+
+          &.instagram {
+            background-image: url(https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Instagram-512.png);
+          }
+
+          &.discord {
+            background-image: url(https://cdn3.iconfinder.com/data/icons/social-network-flat-3/100/Discord-512.png);
+          }
+
+          &.github {
+            background-image: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-social-github-512.png);
+          }
+
+          &.steam {
+            background-image: url(https://cdn2.iconfinder.com/data/icons/gaming-platforms-logo-shapes/250/steam_logo-512.png);
+          }
+
+          &.youtube {
+            background-image: url(https://cdn1.iconfinder.com/data/icons/logotypes/32/youtube-512.png);
           }
         }
-  
-        .footer-left,
-        .footer-right {
-          display: flex;
-          justify-content: center;
-          margin-bottom: 15px;
+
+        .social-info {
+          p {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+          }
         }
-  
-        .contact-info {
-          .social-button {
-            width: 30px;
-            height: 30px;
+      }
+    }
+
+    .copyright {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-content {
+      .user-card {
+        padding: 15px;
+
+        .profile-info {
+          .avatar-img {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+          }
+
+          .name-title {
+            h2 {
+              font-size: 20px;
+            }
+
+            p {
+              font-size: 14px;
+            }
           }
         }
       }
     }
   }
+}
