@@ -8,10 +8,11 @@ import { GithubService } from '../services/github.service';
 })
 export class IndexPage implements OnInit, OnDestroy {
 
+  // Project repositories
   projects = [
     {
       title: 'Lyra QR',
-      description: 'This bot was specifically created to integrate into Discord and has a standout feature: QR code generation. When a user inputs text of their choice, the bot creates an image with a QR code.',
+      description: 'This assistant was specifically created to integrate into Discord and has a standout feature: QR code generation. When a user inputs text of their choice, the assistant creates an image with a QR code.',
       imageUrl: '../../assets/LyraQR.png',
       language: 'Python',
       demoUrl: 'https://example.com/project1',
@@ -51,6 +52,54 @@ export class IndexPage implements OnInit, OnDestroy {
     }
   ];
 
+  // Tech Expertise
+  techExpertiseList = [
+    { name: 'HTML' },
+    { name: 'CSS' },
+    { name: 'JavaScript' },
+    { name: 'TypeScript' },
+    { name: 'Python' },
+    { name: 'NodeJS' },
+    { name: 'Angular' },
+    { name: 'Ionic' },
+  ];
+
+  // Methodologies
+  methodologyList = [
+    { name: 'Scrum' },
+  ];
+
+  // Front-End Developer
+  frontDeveloperList = [
+    { name: 'HTML' },
+    { name: 'CSS' },
+    { name: 'SCSS' },
+    { name: 'JavaScript' },
+    { name: 'Angular' },
+  ];
+
+  // Front-End Tools
+  frontToolsList = [
+    { name: 'Git' },
+    { name: 'VSCode' },
+    { name: 'npm' },
+  ];
+
+  // Back-end Developer
+  backDeveloperList = [
+    { name: 'NodeJS' },
+    { name: 'Express' },
+    { name: 'SQL' },
+  ];
+
+  // Back-End Tools
+  backToolsList = [
+    { name: 'Git' },
+    { name: 'Postman' },
+  ];
+
+
+  // Social links
   socialLinks = [
     { url: 'https://www.facebook.com/leonix6408', title: 'Facebook', icon: 'facebook', description: 'Leonix64' },
     { url: 'https://twitter.com/Leonix6408', title: 'Twitter', icon: 'twitter', description: 'Leonix6408' },
@@ -71,13 +120,7 @@ export class IndexPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.githubService.getAvatarUrl(this.githubUsername).then(
-      data => {
-        this.avatarUrl = data.avatar_url;
-      }
-    ).catch(err => {
-      console.log('Error al obtener la imagen de GitHub:', err);
-    })
+    this.imageGitHub();
   }
 
   ngOnDestroy() {
@@ -86,5 +129,15 @@ export class IndexPage implements OnInit, OnDestroy {
 
   updateDateTime() {
     this.currentDateTime = new Date();
+  }
+
+  imageGitHub() {
+    this.githubService.getAvatarUrl(this.githubUsername).then(
+      data => {
+        this.avatarUrl = data.avatar_url;
+      }
+    ).catch(err => {
+      console.log('Error getting the image from GitHub: ', err);
+    })
   }
 }

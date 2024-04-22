@@ -1,52 +1,58 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>test</ion-title>
+    <ion-title>My Journey</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- Footer -->
-  <ion-card class="default-card-styles footer">
-    <div class="footer-content">
+  <!-- My Journey -->
+  <ion-card class="default-card-styles path">
+    <div class="roles-container">
+      <!-- Tech Expertise -->
+      <div class="role tech-expertise">
+        <ion-icon name="code-slash-outline"></ion-icon>
+        <h3>My Tech Expertise</h3>
+        <p>These are the technologies I'm most proficient in:</p>
+        <ul>
+          <li *ngFor="let tech of techExpertiseList">{{ tech.name }}</li>
+        </ul>
+        <p>Additionally, I have experience working with methodology:</p>
+        <ul>
+          <li *ngFor="let meth of methodologyList">{{ meth.name }}</li>
+        </ul>
+      </div>
 
-      <!-- Contact card -->
-      <h1>Contact me:</h1>
-      <div class="user-card">
-        <div class="profile-info">
-          <div class="avatar-img">
-            <img [src]="avatarUrl" alt="User Avatar">
-          </div>
-          <div class="name-title">
-            <h2>Angel Gonzalez</h2>
-            <p>Software Engineer</p>
-          </div>
-        </div>
-        <div class="contact-me">
-          <p>Have any questions or interested in working with me? Feel free to get in touch:</p>
-          <div class="phone">
-            <ion-icon name="phone-portrait-outline"></ion-icon>
-            <span>+52 (618) coming soon</span>
-          </div>
-          <div class="email">
-            <ion-icon name="mail-outline"></ion-icon>
-            <a href="mailto:angel.gonzalezh08@gmail.com">angel.gonzalezh08&#64;gmail.com</a>
-          </div>
+      <!-- Frontend Developer -->
+      <div class="role frontend">
+        <ion-icon name="browsers-outline"></ion-icon>
+        <h3>Frontend Developer</h3>
+        <p>I like to code things from scratch and enjoy bringing ideas to life in the browser.</p>
+        <ul>
+          <li *ngFor="let front of frontDeveloperList">{{ front.name }}</li>
+        </ul>
+        <div class="dev-tools">
+          <h4>Dev Tools:</h4>
+          <ul>
+            <li *ngFor="let tools of frontToolsList">{{ tools.name }}</li>
+          </ul>
         </div>
       </div>
 
-      <!-- Network icons -->
-      <h1>Social networks and hobbies</h1>
-      <div class="contact-info">
-        <div class="social-card" *ngFor="let social of socialLinks">
-          <a [href]="social.url" target="_blank" [title]="social.title">
-            <div [class]="'social-icon ' + social.icon"></div>
-            <div class="social-info">
-              <p>{{ social.description }}</p>
-            </div>
-          </a>
+      <!-- Backend Developer -->
+      <div class="role backend">
+        <ion-icon name="server-outline"></ion-icon>
+        <h3>Backend Developer</h3>
+        <p>In relation to Frontend, I also reinforce my knowledge in these technologies.</p>
+        <ul>
+          <li *ngFor="let back of backDeveloperList">{{ back.name }}</li>
+        </ul>
+        <div class="dev-tools">
+          <h4>Dev Tools:</h4>
+          <ul>
+            <li *ngFor="let tools of backToolsList">{{ tools.name }}</li>
+          </ul>
         </div>
       </div>
-      <p class="copyright">© 2023 Web Developer | Angel Gonzalez. All rights reserved.</p>
     </div>
   </ion-card>
 </ion-content>

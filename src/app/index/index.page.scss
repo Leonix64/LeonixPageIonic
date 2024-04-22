@@ -303,16 +303,16 @@ ion-content {
   }
 }
 
-// Trayectoria
+// My Journey
 .path {
   padding: 20px;
+  color: #fff;
 
   h2 {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 40px;
-    color: #fff;
   }
 
   .roles-container {
@@ -326,7 +326,6 @@ ion-content {
       margin-bottom: 30px;
       padding: 30px;
       border-radius: 15px;
-      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -349,34 +348,37 @@ ion-content {
         }
       }
 
+      // Styles for Tech Expertise section
       &.tech-expertise {
-        background-color: #2b2b2b;
+        background-color: #29475a;
 
         ul li {
-          background-color: #3b3b3b;
+          background-color: #375f77;
         }
 
         p {
           margin-top: 20px;
           font-style: italic;
           font-size: 14px;
-          color: #b3b3b3;
+          color: #c1d3dc;
         }
       }
 
+      // Styles for Frontend Developer section
       &.frontend {
-        background-color: #243e4d;
+        background-color: #2d333b;
 
         ul li {
-          background-color: #355366;
+          background-color: #454d54;
         }
       }
 
+      // Styles for Backend Developer section
       &.backend {
-        background-color: #2f3a37;
+        background-color: #2a3438;
 
         ul li {
-          background-color: #425d54;
+          background-color: #3f4b51;
         }
       }
 
@@ -392,7 +394,7 @@ ion-content {
 
       ion-icon {
         font-size: 50px;
-        color: #00ff9b;
+        color: #7ed6df; // Color of icons
       }
 
       h3 {
@@ -412,7 +414,7 @@ ion-content {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.1); // Semitransparent background
         opacity: 0;
         transition: opacity 0.3s ease;
       }
@@ -428,6 +430,7 @@ ion-content {
     }
   }
 
+  // Styles for medium screens
   @media (max-width: 1024px) {
     .roles-container {
       .role {
@@ -436,13 +439,9 @@ ion-content {
     }
   }
 
+  // Styles for small screens
   @media (max-width: 768px) {
     padding: 30px;
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 30px;
-    }
 
     .roles-container {
       .role {
@@ -586,8 +585,8 @@ ion-content {
               justify-content: center;
               margin: 0 1rem;
               padding: 0.75rem 1.5rem;
-              color: #00ff9b;
-              background-color: rgba(#2c3e50, 0.5);
+              color: #ffffff;
+              background-color: rgba(#29475a, 0.5);
               border-radius: 4px;
               text-decoration: none;
               transition: color 0.3s ease, background-color 0.3s ease;
@@ -597,7 +596,7 @@ ion-content {
               }
 
               &:hover {
-                color: #00ba79;
+                color: #2d333b;
                 background-color: rgba(#2c3e50, 0.7);
               }
             }

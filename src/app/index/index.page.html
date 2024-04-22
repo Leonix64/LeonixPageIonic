@@ -80,64 +80,52 @@
     </ion-row>
   </ion-card>
 
-  <!-- Trayectoria -->
+  <!-- My Journey -->
   <ion-card class="default-card-styles path">
     <h2>My Journey</h2>
     <div class="roles-container">
+      <!-- Tech Expertise -->
       <div class="role tech-expertise">
         <ion-icon name="code-slash-outline"></ion-icon>
         <h3>My Tech Expertise</h3>
         <p>These are the technologies I'm most proficient in:</p>
         <ul>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>TypeScript</li>
-          <li>Python</li>
-          <li>Node.Js</li>
-          <li>Ionic</li>
-          <li>Angular</li>
+          <li *ngFor="let tech of techExpertiseList">{{ tech.name }}</li>
         </ul>
-        <p>Additionally, I have experience working with methodology:
-          <ul>
-            <li>Scrum</li>
-          </ul>
+        <p>Additionally, I have experience working with methodology:</p>
+        <ul>
+          <li *ngFor="let meth of methodologyList">{{ meth.name }}</li>
+        </ul>
       </div>
+
+      <!-- Frontend Developer -->
       <div class="role frontend">
         <ion-icon name="browsers-outline"></ion-icon>
         <h3>Frontend Developer</h3>
-        <p>I like code things from scratch, and enjoy bringing ideas to life in the browser.</p>
+        <p>I like to code things from scratch and enjoy bringing ideas to life in the browser.</p>
         <ul>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>SCSS</li>
-          <li>JavaScript</li>
-          <li>Angular</li>
-          <li>React</li>
+          <li *ngFor="let front of frontDeveloperList">{{ front.name }}</li>
         </ul>
         <div class="dev-tools">
           <h4>Dev Tools:</h4>
           <ul>
-            <li>Git</li>
-            <li>VSCode</li>
-            <li>npm</li>
+            <li *ngFor="let tools of frontToolsList">{{ tools.name }}</li>
           </ul>
         </div>
       </div>
+
+      <!-- Backend Developer -->
       <div class="role backend">
         <ion-icon name="server-outline"></ion-icon>
         <h3>Backend Developer</h3>
-        <p>In relation to Frontend I also reinforce my knowledge in these technologies. </p>
+        <p>In relation to Frontend, I also reinforce my knowledge in these technologies.</p>
         <ul>
-          <li>Node.Js</li>
-          <li>Express</li>
-          <li>SQL</li>
+          <li *ngFor="let back of backDeveloperList">{{ back.name }}</li>
         </ul>
         <div class="dev-tools">
           <h4>Dev Tools:</h4>
           <ul>
-            <li>Postman</li>
-            <li>Git</li>
+            <li *ngFor="let tools of backToolsList">{{ tools.name }}</li>
           </ul>
         </div>
       </div>
@@ -220,7 +208,7 @@
           </a>
         </div>
       </div>
-      <p class="copyright">© 2023 Web Developer | Angel Gonzalez. All rights reserved.</p>
+      <p class="copyright">&copy; 2023 Web Developer | Angel Gonzalez | Built with Ionic and Angular. All rights reserved.</p>
     </div>
   </ion-card>
 </ion-content>
