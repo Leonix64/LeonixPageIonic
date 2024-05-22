@@ -19,6 +19,12 @@
     <p>{{ currentDateTime | date: 'dd/MM/yyyy - hh:mm:ss a' }}</p>
   </div> -->
 
+  <!-- Easter Egg -->
+  <div *ngIf="easterEggActive" class="easter-egg">
+    <img src="../../assets/easter-egg/bocchi-asustada.gif" alt="Easter Egg">
+    <p>¡Felicidades! Has encontrado 1 de 4 easter eggs :D</p>
+  </div>  
+
   <!-- Tarjeta de información -->
   <ion-card class="default-card-styles info-container">
     <ion-row>

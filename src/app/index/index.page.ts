@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { GithubService } from '../services/github.service';
 
 @Component({
@@ -39,7 +39,7 @@ export class IndexPage implements OnInit, OnDestroy {
       description: "Web application for managing appointments and tracking patients at a mental health clinic.",
       imageUrl: "../../assets/GestorCitas.png",
       language: "Ionic, Angular",
-      demoUrl: "https://example.com/project3",
+      demoUrl: "https://example.com/project4",
       sourceUrl: "https://github.com/Leonix64/SaludMental_Front.git"
     },
     {
@@ -47,7 +47,7 @@ export class IndexPage implements OnInit, OnDestroy {
       description: "Tool to generate secure passwords of variable length, calculate their entropy, estimate the time required to decrypt them by brute force, and provide security tips.",
       imageUrl: "../../assets/Contrasena.png",
       language: "Python",
-      demoUrl: "https://example.com/project3",
+      demoUrl: "https://example.com/project5",
       sourceUrl: "https://github.com/Leonix64/Password_Generator.git"
     }
   ];
@@ -98,7 +98,6 @@ export class IndexPage implements OnInit, OnDestroy {
     { name: 'Postman' },
   ];
 
-
   // Social links
   socialLinks = [
     { url: 'https://www.facebook.com/leonix6408', title: 'Facebook', icon: 'facebook', description: 'Leonix64' },
@@ -114,6 +113,11 @@ export class IndexPage implements OnInit, OnDestroy {
   private intervalId: any;
   githubUsername = 'Leonix64';
   avatarUrl = '';
+
+  // Easter Egg properties
+  private easterEggCode: string[] = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  private currentCodePosition: number = 0;
+  easterEggActive: boolean = false;
 
   constructor(private githubService: GithubService) {
     this.intervalId = setInterval(() => this.updateDateTime(), 1000);
@@ -138,6 +142,27 @@ export class IndexPage implements OnInit, OnDestroy {
       }
     ).catch(err => {
       console.log('Error getting the image from GitHub: ', err);
-    })
+    });
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    const key = event.key.toLowerCase();
+    if (key === this.easterEggCode[this.currentCodePosition].toLowerCase()) {
+      this.currentCodePosition++;
+      if (this.currentCodePosition === this.easterEggCode.length) {
+        this.activateEasterEgg();
+        this.currentCodePosition = 0;
+      }
+    } else {
+      this.currentCodePosition = 0;
+    }
+  }
+
+  activateEasterEgg() {
+    this.easterEggActive = true;
+    setTimeout(() => {
+      this.easterEggActive = false;
+    }, 5000);
   }
 }

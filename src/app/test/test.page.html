@@ -1,58 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>My Journey</ion-title>
+    <ion-title>XD</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- My Journey -->
-  <ion-card class="default-card-styles path">
-    <div class="roles-container">
-      <!-- Tech Expertise -->
-      <div class="role tech-expertise">
-        <ion-icon name="code-slash-outline"></ion-icon>
-        <h3>My Tech Expertise</h3>
-        <p>These are the technologies I'm most proficient in:</p>
-        <ul>
-          <li *ngFor="let tech of techExpertiseList">{{ tech.name }}</li>
-        </ul>
-        <p>Additionally, I have experience working with methodology:</p>
-        <ul>
-          <li *ngFor="let meth of methodologyList">{{ meth.name }}</li>
-        </ul>
-      </div>
 
-      <!-- Frontend Developer -->
-      <div class="role frontend">
-        <ion-icon name="browsers-outline"></ion-icon>
-        <h3>Frontend Developer</h3>
-        <p>I like to code things from scratch and enjoy bringing ideas to life in the browser.</p>
-        <ul>
-          <li *ngFor="let front of frontDeveloperList">{{ front.name }}</li>
-        </ul>
-        <div class="dev-tools">
-          <h4>Dev Tools:</h4>
-          <ul>
-            <li *ngFor="let tools of frontToolsList">{{ tools.name }}</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Backend Developer -->
-      <div class="role backend">
-        <ion-icon name="server-outline"></ion-icon>
-        <h3>Backend Developer</h3>
-        <p>In relation to Frontend, I also reinforce my knowledge in these technologies.</p>
-        <ul>
-          <li *ngFor="let back of backDeveloperList">{{ back.name }}</li>
-        </ul>
-        <div class="dev-tools">
-          <h4>Dev Tools:</h4>
-          <ul>
-            <li *ngFor="let tools of backToolsList">{{ tools.name }}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </ion-card>
 </ion-content>
