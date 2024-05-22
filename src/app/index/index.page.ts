@@ -109,15 +109,23 @@ export class IndexPage implements OnInit, OnDestroy {
     { url: 'https://www.youtube.com/@Leonix64', title: 'YouTube', icon: 'youtube', description: '@Leonix64' },
   ];
 
+  // Reloj
   currentDateTime: Date = new Date();
   private intervalId: any;
+
+  // GitHub
   githubUsername = 'Leonix64';
   avatarUrl = '';
 
-  // Easter Egg properties
+  // Easter Egg 1
   private easterEggCode: string[] = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
   private currentCodePosition: number = 0;
   easterEggActive: boolean = false;
+
+  // Easter Egg 2
+  easterEggSequence = ['vscode', 'typescript', 'ionic'];
+  currentSequence: string[] = [];
+  easterEggActive2 = false;
 
   constructor(private githubService: GithubService) {
     this.intervalId = setInterval(() => this.updateDateTime(), 1000);
@@ -145,6 +153,7 @@ export class IndexPage implements OnInit, OnDestroy {
     });
   }
 
+  // Easter egg 1
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     const key = event.key.toLowerCase();
@@ -164,5 +173,26 @@ export class IndexPage implements OnInit, OnDestroy {
     setTimeout(() => {
       this.easterEggActive = false;
     }, 5000);
+    console.log('¡Vaya descubriste un Easter Egg! Aquí una pista para el siguiente: "Un editor que ilumina, un lenguaje que tipa, y un framework que moviliza. (Esta pagina es la pista)"');
+  }
+
+  // Easter egg 2
+  onSkillClick(skill: string) {
+    //console.log(`Skill clicked: ${skill}`);
+    this.currentSequence.push(skill);
+    //console.log(`Current sequence: ${this.currentSequence.join(', ')}`);
+
+    if (this.currentSequence.length === this.easterEggSequence.length) {
+      if (this.currentSequence.every((value, index) => value === this.easterEggSequence[index])) {
+        console.log('Easter egg sequence matched!');
+        this.easterEggActive2 = true;
+        setTimeout(() => {
+          this.easterEggActive2 = false;
+        }, 5000);
+      } else {
+        console.log('Easter egg sequence did not match.');
+      }
+      this.currentSequence = [];
+    }
   }
 }
