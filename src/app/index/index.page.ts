@@ -49,7 +49,15 @@ export class IndexPage implements OnInit, OnDestroy {
       language: "Python",
       demoUrl: "https://example.com/project5",
       sourceUrl: "https://github.com/Leonix64/Password_Generator.git"
-    }
+    },
+    {
+      title: "POS",
+      description: "Development of customized projects for companies from different sectors, with the aim of making web technology accessible to Cconor's partners.",
+      imageUrl: "../../assets/POS-cafe.png",
+      language: "Angular",
+      demoUrl: "https://example.com/project6",
+      sourceUrl: "https://github.com/EdyFJR/CconorTeam"
+    },
   ];
 
   // Tech Expertise
@@ -90,6 +98,8 @@ export class IndexPage implements OnInit, OnDestroy {
     { name: 'NodeJS' },
     { name: 'Express' },
     { name: 'SQL' },
+    { name: 'MongoDB' },
+    { name: 'Firebase' },
   ];
 
   // Back-End Tools
