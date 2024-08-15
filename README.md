@@ -29,3 +29,5 @@ Asegúrate de tener instaladas las siguientes herramientas antes de continuar:
 4. Ejecuta el proyecto:
    ```bash
    ionic serve -o
+
+YoLo?
