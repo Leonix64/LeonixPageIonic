@@ -1,0 +1,7 @@
+{
+  "name": "LeonixPage",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
