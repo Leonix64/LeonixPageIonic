@@ -1,0 +1,44 @@
+<!-- Footer -->
+<ion-card class="default-card-styles footer">
+  <div class="footer-content">
+
+    <!-- Contact card -->
+    <h1>Contact me:</h1>
+    <div class="user-card">
+      <div class="profile-info">
+        <div class="avatar-img">
+          <img [src]="avatarUrl" alt="User Avatar">
+        </div>
+        <div class="name-title">
+          <h2>Angel Gonzalez</h2>
+          <p>Software Engineer</p>
+        </div>
+      </div>
+      <div class="contact-me">
+        <p>Have any questions or interested in working with me? Feel free to get in touch:</p>
+        <div class="phone">
+          <ion-icon name="phone-portrait-outline"></ion-icon>
+          <span>+52 (618) coming soon</span>
+        </div>
+        <div class="email">
+          <ion-icon name="mail-outline"></ion-icon>
+          <a href="mailto:angel.gonzalezh08@gmail.com">angel.gonzalezh08&#64;gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Network icons -->
+    <h1>Social networks and hobbies</h1>
+    <div class="contact-info">
+      <div class="social-card" *ngFor="let social of socialLinks">
+        <a [href]="social.url" target="_blank" [title]="social.title">
+          <div [class]="'social-icon ' + social.icon"></div>
+          <div class="social-info">
+            <p>{{ social.description }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2023 Web Developer | Angel Gonzalez | Built with Ionic and Angular. All rights reserved.</p>
+  </div>
+</ion-card>

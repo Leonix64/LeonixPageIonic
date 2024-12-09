@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true" class="no-scroll">
+  <!-- Profile -->
+  <div class="profile-container">
+    <div class="avatar-container">
+      <div class="avatar">
+        <img src="../../assets/leonix/image1.png" alt="Avatar Image" class="base-image">
+        <img src="../../assets/leonix/image2.png" alt="Hover Image" class="hover-image">
+      </div>
+    </div>
+    <div class="name">
+      <p class="first-name">Angel</p>
+      <p class="last-name">Gonzalez Hernandez</p>
+      <p class="nickname">(Leonix)</p>
+    </div>
+  </div>
+
+  <!-- Easter Egg 1 -->
+  <div *ngIf="easterEggActive" class="easter-egg">
+    <img src="../../assets/easter-egg/bocchi-asustada.gif" alt="Easter Egg">
+    <p>¡Felicidades! Has encontrado 1 de 4 easter eggs :D</p>
+  </div>
+
+  <!-- Watch -->
+  <!-- <app-watch></app-watch> -->
+
+  <!-- Information Card -->
+  <app-information-card></app-information-card>
+
+  <!-- My Journey -->
+  <app-my-journey></app-my-journey>
+
+  <!-- Portfolio -->
+  <app-portfolio></app-portfolio>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+</ion-content>

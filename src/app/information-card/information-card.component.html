@@ -1,0 +1,66 @@
+<!-- Tarjeta de información -->
+<ion-card class="default-card-styles info-container">
+  <ion-row>
+    <!-- Acerca de mí -->
+    <ion-col size-md="6" size-xs="12">
+      <ion-title>ABOUT ME</ion-title>
+      <div class="info-content">
+        <p class="role">Software Developer</p>
+        <p class="bio">I graduated in Software Engineering, where I initially familiarized myself with Java before delving into the exciting world of web and mobile development. This latter field captured my interest and led me to utilize various tools and frameworks to create innovative solutions.</p>
+        <p class="bio">Additionally, I completed a technical degree in Computer Equipment Support and Maintenance. Thanks to this training, I possess solid skills in various areas.</p>
+        <p class="additional-skills">Since I started in the world of programming, I have done online work and collaborated with people on digital projects for both companies and end-users. I am quite confident in my way of working and I am very curious, always seeking to improve my skills.</p>
+      </div>
+    </ion-col>      
+  
+    <!-- Habilidades técnicas -->
+    <ion-col size-md="6" size-xs="12">
+      <ion-title>TECHNICAL SKILLS</ion-title>
+      <div class="skills-container">
+        <!-- Grupo 1 -->
+        <div class="skill-group">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/html5/html5-original.svg" alt="HTML" (click)="onSkillClick('html')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/css3/css3-original.svg" alt="CSS" (click)="onSkillClick('css')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/javascript/javascript-original.svg" alt="JavaScript" (click)="onSkillClick('js')">
+        </div>
+      
+        <!-- Grupo 2 -->
+        <div class="skill-group">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/typescript/typescript-original.svg" alt="TypeScript" (click)="onSkillClick('typescript')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/php/php-original.svg" alt="PHP" (click)="onSkillClick('php')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" (click)="onSkillClick('mysql')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/python/python-original.svg" alt="Python" (click)="onSkillClick('python')">
+        </div>
+      
+        <!-- Grupo 3 -->
+        <div class="skill-group">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/angularjs/angularjs-original.svg" alt="Angular" (click)="onSkillClick('angular')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/nodejs/nodejs-original.svg" alt="NodeJs" (click)="onSkillClick('nodejs')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/arduino/arduino-original.svg" alt="Arduino" (click)="onSkillClick('arduino')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/flutter/flutter-original.svg" alt="Flutter" (click)="onSkillClick('flutter')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/laravel/laravel-plain.svg" alt="Laravel" (click)="onSkillClick('laravel')">
+        </div>
+      
+        <!-- Grupo 4 -->
+        <div class="skill-group">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/ionic/ionic-original.svg" alt="Ionic" (click)="onSkillClick('ionic')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/java/java-original.svg" alt="Java" (click)="onSkillClick('java')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/kotlin/kotlin-original.svg" alt="Kotlin" (click)="onSkillClick('kotlin')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/matlab/matlab-original.svg" alt="Matlab" (click)="onSkillClick('matlab')">
+        </div>
+      
+        <!-- Grupo 5 -->
+        <div class="skill-group">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/photoshop/photoshop-line.svg" alt="Photoshop" (click)="onSkillClick('photoshop')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/dart/dart-original.svg" alt="Dart" (click)="onSkillClick('dart')">
+          <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/vscode/vscode-original.svg" alt="VS Code" (click)="onSkillClick('vscode')">
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+<!-- Easter egg 2 -->
+<div *ngIf="easterEggActive2" class="easter-egg">
+  <img src="../../assets/easter-egg/apoco-si-pa.jpg" alt="Easter Egg2">
+  <p>¡Felicidades! Has encontrado 2 de 4 easter eggs :3</p>
+</div>
