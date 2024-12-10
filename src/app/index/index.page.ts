@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-index',
@@ -6,6 +6,13 @@ import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
   styleUrls: ['./index.page.scss'],
 })
 export class IndexPage implements OnInit {
+
+  ngAfterViewInit() {
+    const audio = document.getElementById('background-music') as HTMLAudioElement;
+    if (audio) {
+      audio.volume = 0.2;
+    }
+  }
 
   // Easter Egg 1
   private easterEggCode: string[] = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
@@ -15,6 +22,11 @@ export class IndexPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleMusic() {
+    const audio = document.getElementById('background-music') as HTMLAudioElement;
+    audio.paused ? audio.play() : audio.pause();
   }
 
   // Easter egg 1

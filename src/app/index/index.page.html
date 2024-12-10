@@ -14,6 +14,13 @@
     </div>
   </div>
 
+  <audio id="background-music" loop autoplay>
+    <source src="../../assets/music/The-Backrooms-Lost-Tape.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <ion-button class="toggle-music-btn" (click)="toggleMusic()">🎵</ion-button>
+
   <!-- Easter Egg 1 -->
   <div *ngIf="easterEggActive" class="easter-egg">
     <img src="../../assets/easter-egg/bocchi-asustada.gif" alt="Easter Egg">
