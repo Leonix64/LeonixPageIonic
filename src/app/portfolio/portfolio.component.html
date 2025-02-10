@@ -6,33 +6,45 @@
       <h1>Portfolio</h1>
       <p>These are some of the projects I've worked on.</p>
     </div>
-    <div class="portfolio-container">
-      <div class="portfolio-item" *ngFor="let project of projects">
-        <div class="portfolio-item-image">
-          <img [src]="project.imageUrl" alt="{{ project.title }}">
-          <div class="portfolio-item-description">
-            <p>{{ project.description }}</p>
+
+    <ngb-carousel #carousel
+                  [interval]="3000"
+                  [pauseOnHover]="true"
+                  [pauseOnFocus]="true"
+                  [showNavigationArrows]="true"
+                  [showNavigationIndicators]="true">
+
+      <ng-template ngbSlide *ngFor="let slideGroup of projectSlides">
+        <div class="portfolio-slide">
+          <div class="portfolio-item" *ngFor="let project of slideGroup">
+            <div class="portfolio-item-image">
+              <img [src]="project.imageUrl" alt="{{ project.title }}">
+              <div class="portfolio-item-description">
+                <p>{{ project.description }}</p>
+              </div>
+            </div>
+            <div class="portfolio-item-content">
+              <h3>{{ project.title }}</h3>
+              <p>Developed with: {{ project.language }}</p>
+              <div class="button-container">
+                <a *ngIf="project.demoUrl" [href]="project.demoUrl" class="demo-link">
+                  <ion-icon name="open-outline"></ion-icon>
+                  Live Demo
+                </a>
+                <a *ngIf="!project.demoUrl" [href]="project.demoUrl" class="demo-link">
+                  <ion-icon name="open-outline"></ion-icon>
+                  Live Demo (Disabled)
+                </a>
+                <a [href]="project.sourceUrl" class="source-link">
+                  <ion-icon name="code-outline"></ion-icon>
+                  View Source
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="portfolio-item-content">
-          <h3>{{ project.title }}</h3>
-          <p>Developed with: {{ project.language }}</p>
-          <div class="button-container">
-            <a *ngIf="project.demoUrl" [href]="project.demoUrl" class="demo-link">
-              <ion-icon name="open-outline"></ion-icon>
-              Live Demo
-            </a>
-            <a *ngIf="!project.demoUrl" [href]="project.demoUrl" class="demo-link">
-              <ion-icon name="open-outline"></ion-icon>
-              Live Demo (Disabled)
-            </a>
-            <a [href]="project.sourceUrl" class="source-link">
-              <ion-icon name="code-outline"></ion-icon>
-              View Source
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+      </ng-template>
+  
+    </ngb-carousel>
   </section>
 </ion-card>

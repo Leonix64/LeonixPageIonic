@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-portfolio',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./portfolio.component.scss'],
 })
 export class PortfolioComponent implements OnInit {
+  @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
+
+  projectSlides: any[][] = [];
 
   // Project repositories
   projects = [
@@ -57,10 +61,38 @@ export class PortfolioComponent implements OnInit {
       demoUrl: "",
       sourceUrl: "https://github.com/EdyFJR/CconorTeam"
     },
+    {
+      title: "FinTrack",
+      description: "App to keep track of personal income and expenses.",
+      imageUrl: "../../assets/FinTrack.png",
+      language: "Angular",
+      demoUrl: "",
+      sourceUrl: "https://github.com/Leonix64/FinTrack.git"
+    },
   ];
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    const itemsPerSlide = 3;
+    for (let i = 0; i < this.projects.length; i += itemsPerSlide) {
+      this.projectSlides.push(this.projects.slice(i, i + itemsPerSlide));
+    }
+  }
 
+  next() {
+    this.carousel.next();
+  }
+
+  prev() {
+    this.carousel.prev();
+  }
+
+  togglePaused() {
+    if (!this.carousel.pause) {
+      this.carousel.pause();
+    } else {
+      this.carousel.cycle();
+    }
+  }
 }
